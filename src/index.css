@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Mooli";
+  src: url("./assets/fonts/Mooli-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@import "tailwindcss";
+
+:root {
+  --primary: #d6f5ff;
+  --secondary: #002668;
+  --sidebar: #ade4ff;
+  --header: #e1fffc;
+  --card: #b2eaf3;
+  --border: #094dfc;
+  --shadow: #000000b9;
+}
+
+@theme {
+  --font-mooli: "Mooli", sans-serif;
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-header: var(--header);
+  --color-sidebar: var(--sidebar);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --shadow-subtle: 0 5px 5px 1px var(--shadow);
+}
