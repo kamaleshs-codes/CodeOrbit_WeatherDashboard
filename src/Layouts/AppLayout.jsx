@@ -5,7 +5,7 @@ import MainContent from "../components/MainContent";
 
 const AppLayout = () => {
   return (
-    <div>
+    <div className="cursor-default font-mooli">
       <Navbar />
       <div className="flex">
         <Sidebar />

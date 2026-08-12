@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <header className='flex justify-between px-8 py-3 h-16 items-center font-mooli bg-header border-b border-border shadow-subtle'>
+    <header className='flex justify-between px-8 py-3 h-16 items-center font-mooli bg-secondary text-text-main font-semibold text-lg border-b-2 border-border shadow-subtle'>
       <h1>Weatherly</h1>
       <nav>
         <ul className='flex gap-8'>
