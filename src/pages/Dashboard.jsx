@@ -6,23 +6,26 @@ import { Card } from "../components/ui/Card";
 import { WeatherDetailsCard } from "../components/WeatherDetailsCard";
 import { getLocalDateTime } from "../utils/DateTimeFormat";
 import DashboardHeader from "../components/DashboardHeader";
+import { getAirQuality } from "../services/airQualityApi";
 
 export const Dashboard = () => {
   const [weather, setWeather] = useState(null);
+  const [airQuality, setAirQuality] = useState(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
       const data = await getWeather("Chennai");
       setWeather(data);
+      const aqData = await getAirQuality(data.coord.lat, data.coord.lon);
+      setAirQuality(aqData);
     };
-
     fetchWeather();
   }, []);
-  if (!weather) {
+  if (!weather || !airQuality) {
     return (
-      <div className="">
+      <div className=''>
         <DashboardHeader />
-        <p className="text-center mt-3">Loading...</p>
+        <p className='text-center mt-3'>Loading...</p>
       </div>
     );
   }
@@ -36,7 +39,7 @@ export const Dashboard = () => {
         </div>
 
         <div className='flex-1'>
-          <WeatherDetailsCard weather={weather} dateTime={dateTime} />
+          <WeatherDetailsCard weather={weather} dateTime={dateTime} airQuality={airQuality} />
         </div>
       </section>
     </div>
