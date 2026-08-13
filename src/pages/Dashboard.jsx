@@ -14,9 +14,13 @@ export const Dashboard = () => {
 
   useEffect(() => {
     const fetchWeather = async () => {
-      const data = await getWeather("Chennai");
-      setWeather(data);
-      const aqData = await getAirQuality(data.coord.lat, data.coord.lon);
+      const weatherData = await getWeather("Chennai");
+      setWeather(weatherData);
+
+      const aqData = await getAirQuality(
+        weatherData.coord.lat,
+        weatherData.coord.lon,
+      );
       setAirQuality(aqData);
     };
     fetchWeather();
@@ -39,7 +43,11 @@ export const Dashboard = () => {
         </div>
 
         <div className='flex-1'>
-          <WeatherDetailsCard weather={weather} dateTime={dateTime} airQuality={airQuality} />
+          <WeatherDetailsCard
+            weather={weather}
+            dateTime={dateTime}
+            airQuality={airQuality}
+          />
         </div>
       </section>
     </div>
