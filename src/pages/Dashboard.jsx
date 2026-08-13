@@ -1,37 +1,42 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { getWeather } from "../services/weatherapi";
 import { WeatherCard } from "../components/WeatherCard";
 import { Card } from "../components/ui/Card";
 import { WeatherDetailsCard } from "../components/WeatherDetailsCard";
+import { getLocalDateTime } from "../utils/DateTimeFormat";
+import DashboardHeader from "../components/DashboardHeader";
 
 export const Dashboard = () => {
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const data = await getWeather("Chennai");
+      setWeather(data);
+    };
+
+    fetchWeather();
+  }, []);
+  if (!weather) {
+    return (
+      <div className="">
+        <DashboardHeader />
+        <p className="text-center mt-3">Loading...</p>
+      </div>
+    );
+  }
+  const dateTime = getLocalDateTime(weather);
   return (
     <div>
-      <section
-        id='dashboard-header'
-        className='flex justify-between p-3 items-center bg-primary border-b-2 border-border-muted '>
-        <div>
-          <h1 className='text-sm font-medium'>Hi, Kamalesh! Good Morning</h1>
-          <p className='text-xl'>Here's your Weather Overview</p>
-        </div>
-        <input
-          className=' border rounded-full w-1/3 p-4 bg-card text-secondary font-semibold'
-          type='text'
-          placeholder='Search Weather, Places..'
-        />
-        <div>
-          <p className='font-medium'>My Profile</p>
-        </div>
-      </section>
+      <DashboardHeader />
       <section className='p-4 flex gap-7'>
-        <div className="w-1/3">
-          <Card heading={"Current Weather"}>
-            <WeatherCard />
-          </Card>
+        <div className='w-1/3'>
+          <WeatherCard weather={weather} dateTime={dateTime} />
         </div>
+
         <div className='flex-1'>
-          <Card heading={"Today's Highlights"}>
-            <WeatherDetailsCard />
-          </Card>
+          <WeatherDetailsCard weather={weather} dateTime={dateTime} />
         </div>
       </section>
     </div>

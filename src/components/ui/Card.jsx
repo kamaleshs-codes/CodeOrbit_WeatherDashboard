@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export const Card = ({children, heading}) => {
+export const Card = ({ children, className = "" }) => {
   return (
-    <div className='p-3 bg-secondary w-full mt-6 rounded-2xl border shadow-subtle'>
-        <h2 className='text-4xl text-text-main mb-3'>{heading}</h2>
-        {children}
+    <div
+      className={`w-full p-3 bg-secondary rounded-2xl border shadow-subtle ${className}`}>
+      {children}
     </div>
-  )
-}
+  );
+};
