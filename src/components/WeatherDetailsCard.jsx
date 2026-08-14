@@ -7,6 +7,18 @@ import { dewPointCalculation } from "../utils/DewPoint";
 import { getVisibilityLevel } from "../utils/visibilityCondition";
 import { getCloudinessLevel } from "../utils/CloudCondition";
 import { getPressureLevel } from "../utils/PressureLevel";
+import {
+  WiCloudy,
+  WiHumidity,
+  WiStrongWind,
+  WiThermometer,
+} from "react-icons/wi";
+import { FiEye } from "react-icons/fi";
+import { LuGauge, LuWind } from "react-icons/lu";
+import sunriseIcon from "../assets/weathersvg/sunrise.svg";
+import sunIcon from "../assets/weathersvg/sun.svg";
+import sunsetIcon from "../assets/weathersvg/sunset.svg";
+import { daylightSeconds } from "../utils/DayLightSeconds";
 
 export const WeatherDetailsCard = ({ weather, dateTime, airQuality }) => {
   const { sunrise, sunset } = dateTime;
@@ -24,75 +36,105 @@ export const WeatherDetailsCard = ({ weather, dateTime, airQuality }) => {
   const cloudLevel = getCloudinessLevel(cloudiness);
   const pressure = weather.main.pressure;
   const pressureLevel = getPressureLevel(pressure);
+  const { daylightDuration } = daylightSeconds(weather.sys.sunrise, weather.sys.sunset);
+
+  const cards = [
+    {
+      title: "Wind Status",
+      value: `${weather.wind.speed} m/s`,
+      secondary: windDirection,
+      icon: WiStrongWind,
+    },
+    {
+      title: "Humidity",
+      value: `${weather.main.humidity}%`,
+      secondary: `${dewPoint}°C Dp`,
+      icon: WiHumidity,
+    },
+    {
+      title: "Visibility",
+      value: `${visibilityKm} Km`,
+      secondary: visibilityLevel,
+      icon: FiEye,
+    },
+    {
+      title: "Air Quality",
+      value: aqi,
+      secondary: AQLevel,
+      icon: LuWind,
+    },
+    {
+      title: "Pressure",
+      value: `${pressure} hPa`,
+      secondary: pressureLevel,
+      icon: LuGauge,
+    },
+    {
+      title: "Cloudiness",
+      value: `${cloudiness}%`,
+      secondary: cloudLevel,
+      icon: WiCloudy,
+    },
+  ];
+
   return (
     <Card>
       <h2 className='text-2xl text-text-main font-semibold mb-3'>
         Today's Highlights
       </h2>
-      <section className='grid grid-cols-[3fr_3fr_4fr] grid-rows-3 gap-3'>
-        <InnerCard>
-          <h3 className='text-xl font-semibold'>Wind Status</h3>
-          <div className='mt-3'>
-            <p>{weather.wind.speed} m/s</p>
-            <p>{windDirection}</p>
-          </div>
-        </InnerCard>
-        <InnerCard>
-          <h3 className='text-xl font-semibold'>Humidity</h3>
-          <div className='mt-3'>
-            <p>{weather.main.humidity} %</p>
-            <p>
-              {dewPoint}
-              <span>&deg;C</span> <span>Dew Point</span>
-            </p>
-          </div>
-        </InnerCard>
-        <InnerCard className='row-span-2'>
-          <h3 className='text-xl font-semibold'>Sunrise</h3>
-          <p>{sunrise}</p>
-          <h3 className='text-xl font-semibold mt-12'>Sunset</h3>
-          <p>{sunset}</p>
-        </InnerCard>
-        <InnerCard>
-          <h3 className='text-xl font-semibold'>Visibility</h3>
-          <div className='mt-3'>
-            <p>{visibilityKm} Km</p>
-            <p>{visibilityLevel}</p>
-          </div>
-        </InnerCard>
-        <InnerCard>
-          <h3 className='text-xl font-semibold'>Air Quality</h3>
-          <div className='mt-3'>
-            <p>{aqi}</p>
-            <p>{AQLevel}</p>
-          </div>
-        </InnerCard>
-        <InnerCard>
-          <h3 className='text-xl font-semibold'>Pressure</h3>
-          <div className='mt-3'>
-            <p>{pressure} hPa</p>
-            <p>{pressureLevel}</p>
-          </div>
-        </InnerCard>
-        <InnerCard>
-          <h3 className='text-xl font-semibold'>Cloudiness</h3>
-          <div className='mt-3'>
-            <p>{cloudiness} %</p>
-            <p>{cloudLevel}</p>
-          </div>
-        </InnerCard>
-        <InnerCard>
-          <h3 className='text-xl font-semibold'>Temperature Range</h3>
-          <div className='mt-3'>
-            <p className="text-lg">Low / High</p>
-          <p >
-            {minTemp}
-            <span>&deg;C</span> {" - "} {maxTemp}
-            <span>&deg;C</span>
-          </p>
-          </div>
-          
-        </InnerCard>
+      <section className='flex gap-3'>
+        <div className='w-[60%] grid grid-cols-2 grid-rows-3 gap-3'>
+          {cards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <InnerCard key={card.title}>
+                <h3 className='text-xl font-semibold'>{card.title}</h3>
+                <div className='mt-3 flex gap-7 items-center'>
+                  <div>
+                    <p>{card.value}</p>
+                    <p>{card.secondary}</p>
+                  </div>
+                  <Icon className='text-3xl'></Icon>
+                </div>
+              </InnerCard>
+            );
+          })}
+        </div>
+
+        <div className='w-[40%] flex flex-col gap-3'>
+          <InnerCard className='flex-1 py-4'>
+            <div className='flex flex-col gap-1'>
+              <div className='flex justify-around'>
+                <div>
+                  <h3 className='text-2xl font-semibold'>Sunrise</h3>
+                  <p>{sunrise}</p>
+                </div>
+                <div>
+                  <h3 className='text-2xl font-semibold'>Sunset</h3>
+                  <p>{sunset}</p>
+                </div>
+              </div>
+              <div className='flex justify-between items-center gap-7 px-4'>
+                <img src={sunriseIcon} alt='' className='w-16 h-16' />
+                <img src={sunsetIcon} alt='' className='w-16 h-16' />
+              </div>
+              <h3 className="text-xl font-semibold">Daylight</h3>
+              <p>{daylightDuration}</p>
+            </div>
+          </InnerCard>
+          <InnerCard className=''>
+            <h3 className='text-xl font-semibold'>Temperature Range</h3>
+            <div className='flex gap-5 items-center'>
+              <div className='mt-2'>
+                <p className='text-xl'>Low / High</p>
+                <p>
+                  {minTemp}°C - {maxTemp}°C
+                </p>
+              </div>
+              <WiThermometer className='text-3xl' />
+            </div>
+          </InnerCard>
+        </div>
       </section>
     </Card>
   );
