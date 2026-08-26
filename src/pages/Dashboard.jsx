@@ -1,8 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getWeather } from "../services/weatherapi";
 import { WeatherCard } from "../components/WeatherCard";
-import { Card } from "../components/ui/Card";
 import { WeatherDetailsCard } from "../components/WeatherDetailsCard";
 import { getLocalDateTime } from "../utils/DateTimeFormat";
 import DashboardHeader from "../components/DashboardHeader";
@@ -11,32 +9,41 @@ import { getAirQuality } from "../services/airQualityApi";
 export const Dashboard = () => {
   const [weather, setWeather] = useState(null);
   const [airQuality, setAirQuality] = useState(null);
+  const [location, setLocation] = useState("Chennai");
 
   useEffect(() => {
     const fetchWeather = async () => {
-      const weatherData = await getWeather("Chennai");
+      const weatherData = await getWeather(location);
+
       setWeather(weatherData);
 
       const aqData = await getAirQuality(
         weatherData.coord.lat,
         weatherData.coord.lon,
       );
+
       setAirQuality(aqData);
     };
+
     fetchWeather();
-  }, []);
+  }, [location]);
+
   if (!weather || !airQuality) {
     return (
-      <div className=''>
-        <DashboardHeader />
+      <div>
+        <DashboardHeader onSearch={setLocation} />
+
         <p className='text-center mt-3'>Loading...</p>
       </div>
     );
   }
+
   const dateTime = getLocalDateTime(weather);
+
   return (
     <div>
-      <DashboardHeader />
+      <DashboardHeader onSearch={setLocation} />
+
       <section className='p-4 flex gap-7'>
         <div className='w-1/3'>
           <WeatherCard weather={weather} dateTime={dateTime} />
