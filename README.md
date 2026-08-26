@@ -1,16 +1,126 @@
-# React + Vite
+# Weather Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive weather dashboard developed as part of the **CodeOrbit Tech Frontend Development Internship**.
 
-Currently, two official plugins are available:
+The application provides weather information for searched cities through a clean and responsive dashboard interface. It displays current weather conditions along with temperature and other weather-related information.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+* Search weather information by city
+* Display current temperature
+* Display weather conditions
+* Display weather icons
+* Show additional weather information
+* Dynamic city-based weather data
+* Responsive dashboard layout
+* Clean and modern user interface
+* Responsive design for different screen sizes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
 
-## Expanding the ESLint configuration
+* HTML5
+* CSS3
+* JavaScript
+* React.js
+* Vite
+* Tailwind CSS
+* OpenWeather API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```text
+src/
+├── components/
+├── pages/
+├── assets/
+├── App.jsx
+└── main.jsx
+
+public/
+package.json
+README.md
+```
+
+## Getting Started
+
+Follow the steps below to run the project locally.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/kamaleshs-codes/CodeOrbit_WeatherDashboard.git
+```
+
+### 2. Navigate to the project directory
+
+```bash
+cd CodeOrbit_WeatherDashboard
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file in the root directory and add your OpenWeather API key.
+
+```env
+VITE_OPENWEATHER_API_KEY=your_api_key_here
+```
+
+> Do not commit your `.env` file or expose your API key publicly.
+
+### 5. Start the development server
+
+```bash
+npm run dev
+```
+
+The application will be available at the local development URL provided by Vite, usually:
+
+```text
+http://localhost:5173
+```
+
+## Build for Production
+
+Create a production build using:
+
+```bash
+npm run build
+```
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Project Links
+
+**GitHub Repository:**
+https://github.com/kamaleshs-codes/CodeOrbit_WeatherDashboard
+
+**Live Demo:**
+Add your deployed Weather Dashboard URL here.
+
+## Internship Task
+
+**Organization:** CodeOrbit Tech
+**Program:** Frontend Development Internship
+**Task:** Weather Dashboard UI
+
+The task required building a weather dashboard interface that displays temperature, weather conditions, and a weather icon, with a search field for switching between cities and a clean, modern layout.
+
+## Author
+
+**Kamalesh S**
+
+GitHub:
+https://github.com/kamaleshs-codes
+
+LinkedIn:
+https://www.linkedin.com/in/kamalesh-s2004
