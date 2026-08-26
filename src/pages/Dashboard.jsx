@@ -9,11 +9,17 @@ import { getAirQuality } from "../services/airQualityApi";
 export const Dashboard = () => {
   const [weather, setWeather] = useState(null);
   const [airQuality, setAirQuality] = useState(null);
-  const [location, setLocation] = useState("Chennai");
+  const [location, setLocation] = useState({
+    name: "Chennai",
+    lat: 13.0878,
+    lon: 80.2785,
+    state: "Tamil Nadu",
+    country: "IN",
+  });
 
   useEffect(() => {
     const fetchWeather = async () => {
-      const weatherData = await getWeather(location);
+      const weatherData = await getWeather(location.lat, location.lon);
 
       setWeather(weatherData);
 
