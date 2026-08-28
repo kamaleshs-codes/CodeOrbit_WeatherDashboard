@@ -10,7 +10,7 @@ export const WeatherCard = ({ weather, dateTime }) => {
 
   return (
     <Card>
-      <h2 className='text-2xl text-text-main font-semibold mb-3'>
+      <h2 className='text-2xl font-semibold mb-3'>
         Current Weather
       </h2>
       <section className='border bg-inner-card rounded-xl shadow-subtle'>

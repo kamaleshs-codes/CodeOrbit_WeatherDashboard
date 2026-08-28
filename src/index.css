@@ -16,6 +16,8 @@
   --card-start: #009dff;
   --card-mid: #4fb6f7;
   --card-end: #a1e3f9;
+  --card-contrast-high: #9adaff;
+  --card-contrast-low: #d3ebef;
   --border: #000b27;
   --border-muted: #5e6071;
   --shadow: #000000b9;
@@ -32,6 +34,11 @@
     var(--card-start),
     var(--card-mid),
     var(--card-end)
+  );
+  --background-image-card-theme: linear-gradient(
+    150deg,
+    var(--card-contrast-high),
+    var(--card-contrast-low)
   );
   --color-text-muted: var(--text-muted);
   --color-border: var(--border);
