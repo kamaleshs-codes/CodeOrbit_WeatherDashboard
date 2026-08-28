@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getWeather } from "../services/weatherapi";
 import { getLocalDateTime } from "../utils/DateTimeFormat";
 import { Card } from "../components/ui/Card";
+import { FiMapPin } from "react-icons/fi";
 
 export const WeatherCard = ({ weather, dateTime }) => {
   const { day, date, time } = dateTime;
@@ -14,8 +15,8 @@ export const WeatherCard = ({ weather, dateTime }) => {
       </h2>
       <section className='border bg-inner-card rounded-xl shadow-subtle'>
         <article className='p-4'>
-          <p className='text-center border border-border rounded-full w-1/3 p-2 mt-2 font-semibold'>
-            {weather.name}
+          <p className='flex text-center border border-border rounded-full w-1/3 p-2 mt-2 font-semibold'>
+          <FiMapPin className="text-lg"/> <span>{weather.name}</span> 
           </p>
 
           <div className='flex justify-around mt-3'>
