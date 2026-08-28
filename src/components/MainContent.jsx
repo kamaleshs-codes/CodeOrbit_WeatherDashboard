@@ -1,12 +1,13 @@
-import React from 'react'
-import { Dashboard } from '../pages/Dashboard'
+import React from "react";
+import { Dashboard } from "../pages/Dashboard";
+import { AppRoutes } from "../routes/AppRoutes";
 
 const MainContent = () => {
   return (
     <main className='flex-1 bg-main text-text-muted'>
-        <Dashboard/>
+      <AppRoutes />
     </main>
-  )
-}
+  );
+};
 
-export default MainContent
+export default MainContent;

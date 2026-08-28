@@ -1,5 +1,4 @@
-import React from "react";
-import { NavList } from "./ui/NavList";
+import { SideNavList } from "./SideNavList";
 
 const Sidebar = () => {
   return (
@@ -9,10 +8,10 @@ const Sidebar = () => {
       </p>
       <nav className='w-full text-center bg-secondary'>
         <ul className='flex flex-col bg-primary text-text-muted text-xl font-semibold'>
-          <NavList>Dashboard</NavList>
-          <NavList>Forecast</NavList>
-          <NavList>Places</NavList>
-          <NavList>Settings</NavList>
+          <SideNavList to='/dashboard'>Dashboard</SideNavList>
+          <SideNavList to='/forecast'>Forecast</SideNavList>
+          <SideNavList to='/places'>Places</SideNavList>
+          <SideNavList to='/settings'>Settings</SideNavList>
         </ul>
       </nav>
     </aside>

@@ -15,7 +15,7 @@ export const WeatherCard = ({ weather, dateTime }) => {
       </h2>
       <section className='border bg-inner-card rounded-xl shadow-subtle'>
         <article className='p-4'>
-          <p className='flex text-center border border-border rounded-full w-1/3 p-2 mt-2 font-semibold'>
+          <p className='flex gap-2 w-max text-center border border-border rounded-full p-2 mt-2 font-semibold'>
           <FiMapPin className="text-lg"/> <span>{weather.name}</span> 
           </p>
 

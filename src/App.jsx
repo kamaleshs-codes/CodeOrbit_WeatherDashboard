@@ -1,11 +1,11 @@
-import AppLayout from "./Layouts/AppLayout"
+import AppLayout from "./Layouts/AppLayout";
 
 function App() {
-  return(
+  return (
     <>
-    <AppLayout/>
+      <AppLayout />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
