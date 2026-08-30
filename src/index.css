@@ -9,15 +9,16 @@
 
 :root {
   --primary: #f7fdff;
-  --secondary: #002668;
-  --main: #cafff6;
+  --secondary: #002d53;
+  --main: #cff1ff;
   --text-main: #e0f1ff;
   --text-muted: #000752;
-  --card-start: #009dff;
-  --card-mid: #4fb6f7;
-  --card-end: #a1e3f9;
-  --card-contrast-high: #9adaff;
-  --card-contrast-low: #d3ebef;
+  --accent: #00e1ff;
+  --card-start: #002338;
+  --card-mid: #001f7a;
+  --card-end: #006b8f;
+  --card-contrast-high: #5cc0f9;
+  --card-contrast-low: #a7f1fe;
   --border: #000b27;
   --border-muted: #5e6071;
   --shadow: #000000b9;
@@ -29,8 +30,9 @@
   --color-secondary: var(--secondary);
   --color-main: var(--main);
   --color-text-main: var(--text-main);
+  --color-text-accent: var(--accent);
   --background-image-inner-card: linear-gradient(
-    135deg,
+    155deg,
     var(--card-start),
     var(--card-mid),
     var(--card-end)
