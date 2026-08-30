@@ -4,7 +4,7 @@ import { InnerCard } from "./ui/InnerCard";
 import { WiRaindrop, WiStrongWind } from "react-icons/wi";
 import { FiChevronRight } from "react-icons/fi";
 
-export const DayForecast = () => {
+export const DayForecastCard = () => {
   const forecastDays = [
     {
       day: "Fri",

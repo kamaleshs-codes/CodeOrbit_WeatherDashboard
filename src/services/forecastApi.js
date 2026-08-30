@@ -8,7 +8,7 @@ export const getForecast = async (lat, lon) => {
         lon,
       },
     });
-    console.log("Forecast:", response.data);
+    console.log("Forecast API:", response.data);
     return response.data;
   } catch (error) {
     console.error("Forecast API Error:", error);
