@@ -1,21 +1,22 @@
 import { DayForecastCard } from "../components/DayForecastCard";
 import { FiMapPin } from "react-icons/fi";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getForecast } from "../services/forecastApi";
 import { processForecastData } from "../utils/processForecastData";
 
 export const Forecast = () => {
+  const [forecast, setForecast] = useState([]);
   useEffect(() => {
     const fetchForecast = async () => {
       try {
         const data = await getForecast(13.0878, 80.2785);
         const processedData = processForecastData(data);
+        setForecast(processedData);
         console.log("Processed Forecast:", processedData);
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchForecast();
   }, []);
   return (
@@ -40,7 +41,7 @@ export const Forecast = () => {
             <p>Udpated - 28 Aug 2026, 12:20 PM</p>
           </div>
         </div>
-        <DayForecastCard />
+        <DayForecastCard forecast={forecast}/>
       </main>
     </section>
   );
