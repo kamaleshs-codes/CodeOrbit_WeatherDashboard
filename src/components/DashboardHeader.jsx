@@ -1,114 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { searchLocations } from "../services/geocodingApi";
+import React from "react";
+import DashboardSearch from "./DashboardSearch";
+import { PageHeader } from "./PageHeader";
 
 const DashboardHeader = ({ onSearch }) => {
-  const [search, setSearch] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
-  // Search location suggestions
-  useEffect(() => {
-    if (search.trim().length < 3) {
-      setSuggestions([]);
-      setShowSuggestions(false);
-      return;
-    }
-
-    const timer = setTimeout(async () => {
-      try {
-        const results = await searchLocations(search.trim());
-
-        setSuggestions(results);
-        setShowSuggestions(true);
-      } catch (error) {
-        console.error("Location search error:", error);
-        setSuggestions([]);
-        setShowSuggestions(false);
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [search]);
-
-  // User presses Enter
-  const handleSearch = () => {
-    if (suggestions.length === 0) {
-      return;
-    }
-
-    onSearch(suggestions[0]);
-
-    setSearch("");
-    setSuggestions([]);
-    setShowSuggestions(false);
-  };
-
-  // User clicks a suggestion
-  const handleLocationSelect = (location) => {
-    onSearch(location);
-
-    setSearch("");
-    setSuggestions([]);
-    setShowSuggestions(false);
-  };
-
   return (
-    <section
-      id='dashboard-header'
-      className='flex justify-between items-center p-3 bg-primary border-b-2 border-border-muted'>
-      <div>
-        <h1 className='text-sm font-medium'>Hi, Kamalesh! Good Morning</h1>
-
-        <p className='text-xl'>Here's your Weather Overview</p>
-      </div>
-
-      {/* Search container */}
-      <div className='relative w-1/3'>
-        <input
-          className='border rounded-full w-full p-4 bg-card text-secondary font-semibold'
-          type='text'
-          placeholder='Search Weather, Places...'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSearch();
-            }
-          }}
-        />
-
-        {/* Suggestions */}
-        {showSuggestions && suggestions.length > 0 && (
-          <div className='absolute top-full left-0 right-0 mt-2 border rounded-xl shadow-lg overflow-hidden z-50'>
-            {suggestions.map((location, index) => (
-              <button
-                key={`${location.lat}-${location.lon}-${index}`}
-                type='button'
-                className={`w-full text-left px-4 py-3 transition-colors ${
-                  index === 0
-                    ? "bg-secondary text-primary hover:bg-secondary"
-                    : "bg-primary text-secondary hover:bg-secondary"
-                }`}
-                onClick={() => handleLocationSelect(location)}>
-                <p className='font-semibold'>{location.name}</p>
-
-                <p
-                  className={`text-sm ${
-                    index === 0 ? "text-primary" : "text-secondary"
-                  }`}>
-                  {location.state && `${location.state}, `}
-                  {location.country}
-                </p>
-              </button>
-            ))}
+      <PageHeader
+        title='Hi, Kamalesh! Good Morning,'
+        subtitle="Here's your Weather Overview">
+          <div className="flex justify-between items-center">
+              <DashboardSearch onSearch={onSearch} />
+              <h3>My Profile</h3>
           </div>
-        )}
-      </div>
-
-      <div>
-        <p className='font-semibold'>My Profile</p>
-      </div>
-    </section>
+      </PageHeader>
   );
 };
 

@@ -38,7 +38,6 @@ export const Dashboard = () => {
     return (
       <div>
         <DashboardHeader onSearch={setLocation} />
-
         <p className='text-center mt-3'>Loading...</p>
       </div>
     );
@@ -49,7 +48,6 @@ export const Dashboard = () => {
   return (
     <div>
       <DashboardHeader onSearch={setLocation} />
-
       <section className='p-4 flex gap-7'>
         <div className='w-1/3'>
           <WeatherCard weather={weather} dateTime={dateTime} />

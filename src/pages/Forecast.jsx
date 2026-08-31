@@ -3,6 +3,7 @@ import { FiMapPin } from "react-icons/fi";
 import React, { useEffect, useState } from "react";
 import { getForecast } from "../services/forecastApi";
 import { processForecastData } from "../utils/processForecastData";
+import { PageHeader } from "../components/PageHeader";
 
 export const Forecast = () => {
   const [forecast, setForecast] = useState([]);
@@ -21,10 +22,10 @@ export const Forecast = () => {
   }, []);
   return (
     <section>
-      <header className='border-b-2'>
-        <h3>Forecast</h3>
-        <p>Know Weather Forecast for Chennai</p>
-      </header>
+      <PageHeader
+        title='Forecast'
+        subtitle='Know Weather Forecast for Chennai'
+      />
       <main className='p-4'>
         {/* location card  */}
         <div className='flex justify-between items-center bg-card-theme px-5 py-3 rounded-lg'>
@@ -41,7 +42,7 @@ export const Forecast = () => {
             <p>Udpated - 28 Aug 2026, 12:20 PM</p>
           </div>
         </div>
-        <DayForecastCard forecast={forecast}/>
+        <DayForecastCard forecast={forecast} />
       </main>
     </section>
   );
