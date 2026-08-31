@@ -4,13 +4,14 @@ import React, { useEffect, useState } from "react";
 import { getForecast } from "../services/forecastApi";
 import { processForecastData } from "../utils/processForecastData";
 import { PageHeader } from "../components/PageHeader";
+import { HourlyForecast } from "../components/HourlyForecast";
 
-export const Forecast = () => {
+export const Forecast = ({ location }) => {
   const [forecast, setForecast] = useState([]);
   useEffect(() => {
     const fetchForecast = async () => {
       try {
-        const data = await getForecast(13.0878, 80.2785);
+        const data = await getForecast(location.lat, location.lon);
         const processedData = processForecastData(data);
         setForecast(processedData);
         console.log("Processed Forecast:", processedData);
@@ -19,7 +20,7 @@ export const Forecast = () => {
       }
     };
     fetchForecast();
-  }, []);
+  }, [location]);
   return (
     <section>
       <PageHeader
@@ -34,8 +35,12 @@ export const Forecast = () => {
               <FiMapPin />
             </span>
             <div>
-              <p className='font-semibold'>Chennai, TamilNadu, IN</p>
-              <p>Lat 13.09 N, Lon 80.27 E</p>
+              <p className='font-semibold'>
+                {location.name}, {location.state}, {location.country}
+              </p>
+              <p>
+                Lat {location.lat.toFixed(2)} N, Lon {location.lon.toFixed(2)} E
+              </p>
             </div>
           </div>
           <div>
@@ -43,6 +48,7 @@ export const Forecast = () => {
           </div>
         </div>
         <DayForecastCard forecast={forecast} />
+        <HourlyForecast/>
       </main>
     </section>
   );

@@ -1,11 +1,10 @@
 import React from "react";
-import { Dashboard } from "../pages/Dashboard";
 import { AppRoutes } from "../routes/AppRoutes";
 
-const MainContent = () => {
+const MainContent = ({location, setLocation}) => {
   return (
     <main className='flex-1 bg-main text-text-muted'>
-      <AppRoutes />
+      <AppRoutes location={location} setLocation={setLocation} />
     </main>
   );
 };

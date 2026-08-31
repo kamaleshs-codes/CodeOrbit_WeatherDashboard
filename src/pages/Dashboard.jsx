@@ -6,31 +6,20 @@ import { getLocalDateTime } from "../utils/DateTimeFormat";
 import DashboardHeader from "../components/DashboardHeader";
 import { getAirQuality } from "../services/airQualityApi";
 
-export const Dashboard = () => {
+export const Dashboard = ({ location, setLocation }) => {
   const [weather, setWeather] = useState(null);
   const [airQuality, setAirQuality] = useState(null);
-  const [location, setLocation] = useState({
-    name: "Chennai",
-    lat: 13.0878,
-    lon: 80.2785,
-    state: "Tamil Nadu",
-    country: "IN",
-  });
 
   useEffect(() => {
     const fetchWeather = async () => {
       const weatherData = await getWeather(location.lat, location.lon);
-
       setWeather(weatherData);
-
       const aqData = await getAirQuality(
         weatherData.coord.lat,
         weatherData.coord.lon,
       );
-
       setAirQuality(aqData);
     };
-
     fetchWeather();
   }, [location]);
 
