@@ -5,16 +5,21 @@ import { getForecast } from "../services/forecastApi";
 import { processForecastData } from "../utils/processForecastData";
 import { PageHeader } from "../components/PageHeader";
 import { HourlyForecast } from "../components/HourlyForecast";
+import { processHourlyForecastData } from "../utils/processHourlyForecastData";
 
 export const Forecast = ({ location }) => {
   const [forecast, setForecast] = useState([]);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
   useEffect(() => {
     const fetchForecast = async () => {
       try {
         const data = await getForecast(location.lat, location.lon);
         const processedData = processForecastData(data);
         setForecast(processedData);
+        const processedHourlyData = processHourlyForecastData(data);
+        setHourlyForecast(processedHourlyData);
         console.log("Processed Forecast:", processedData);
+        console.log("Processed Hourly Forecast:", processedHourlyData);
       } catch (error) {
         console.error(error);
       }
@@ -28,7 +33,6 @@ export const Forecast = ({ location }) => {
         subtitle='Know Weather Forecast for Chennai'
       />
       <main className='p-4'>
-        {/* location card  */}
         <div className='flex justify-between items-center bg-card-theme px-5 py-3 rounded-lg'>
           <div className='flex items-center gap-2'>
             <span className='text-xl'>
@@ -48,7 +52,7 @@ export const Forecast = ({ location }) => {
           </div>
         </div>
         <DayForecastCard forecast={forecast} />
-        <HourlyForecast/>
+        <HourlyForecast hourlyForecast={hourlyForecast} />
       </main>
     </section>
   );

@@ -3,7 +3,7 @@ import { Card } from "./ui/Card";
 import { FiChevronRight } from "react-icons/fi";
 import { HourlyForecastCard } from "./HourlyForecastCard";
 
-export const HourlyForecast = () => {
+export const HourlyForecast = ({ hourlyForecast }) => {
   return (
     <section className='mt-5'>
       <Card>
@@ -15,11 +15,9 @@ export const HourlyForecast = () => {
           </p>
         </div>
         <div className='grid grid-cols-5 gap-3'>
-          <HourlyForecastCard />
-          <HourlyForecastCard />
-          <HourlyForecastCard />
-          <HourlyForecastCard />
-          <HourlyForecastCard />
+          {hourlyForecast.slice(0, 5).map((hour) => (
+            <HourlyForecastCard key={hour.time} hour={hour} />
+          ))}
         </div>
       </Card>
     </section>
