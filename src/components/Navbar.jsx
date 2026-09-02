@@ -1,4 +1,5 @@
 import React from "react";
+import { FiHome, FiInfo, FiLogIn, FiMail } from "react-icons/fi";
 
 const Navbar = () => {
   return (
@@ -7,16 +8,28 @@ const Navbar = () => {
       <nav>
         <ul className='flex gap-8'>
           <li>
-            <a href='#'>Home</a>
+            <div className="flex items-center gap-1 hover:text-accent">
+              <span><FiHome/></span>
+              <a href='#'>Home</a>
+            </div>
           </li>
           <li>
-            <a href='#'>About</a>
+            <div className="flex items-center gap-1 hover:text-accent">
+              <span><FiInfo/></span>
+              <a href='#'>About</a>
+            </div>
           </li>
           <li>
+            <div className="flex items-center gap-1 hover:text-accent">
+              <span><FiMail/></span>
             <a href='#'>Contact</a>
+            </div>
           </li>
           <li>
-            <a href='#'>Login</a>
+            <div className="flex items-center gap-1 hover:text-accent">
+              <span><FiLogIn/></span>
+              <a href='#'>Login</a>
+            </div>
           </li>
         </ul>
       </nav>

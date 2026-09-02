@@ -9,11 +9,11 @@
 
 :root {
   --primary: #f7fdff;
-  --secondary: #002d53;
+  --secondary: #00203b;
   --main: #cff1ff;
   --text-main: #e0f1ff;
   --text-muted: #000752;
-  --accent: #00e1ff;
+  --accent: #00a2ff;
   --card-start: #002338;
   --card-mid: #001f7a;
   --card-end: #006b8f;
@@ -29,6 +29,7 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-main: var(--main);
+  --color-accent: var(--accent);
   --color-text-main: var(--text-main);
   --color-text-accent: var(--accent);
   --background-image-inner-card: linear-gradient(

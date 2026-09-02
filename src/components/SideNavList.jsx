@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export const SideNavList = ({ children, to }) => {
+export const SideNavList = ({ children, to, icon: Icon }) => {
   return (
     <li>
       <NavLink
@@ -10,10 +10,13 @@ export const SideNavList = ({ children, to }) => {
           `block py-4 border-b border-border-muted ${
             isActive
               ? "bg-secondary text-text-main"
-              : "bg-primary text-text-muted"
+              : "bg-primary text-text-muted hover:bg-accent"
           }`
         }>
-        {children}
+        <div className="flex items-center gap-2 px-3">
+          <Icon className='text-xl' />
+          <span>{children}</span>
+        </div>
       </NavLink>
     </li>
   );

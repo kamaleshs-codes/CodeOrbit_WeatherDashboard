@@ -6,7 +6,9 @@ export const getLocalDateTime = (weather) => {
       minute: "2-digit",
       hour12: true,
       timeZone: "UTC",
-    }).format(formatPeriod);
+    })
+      .format(formatPeriod)
+      .toUpperCase();
   };
 
   const dayDatePeriod = new Date((weather.dt + weather.timezone) * 1000);

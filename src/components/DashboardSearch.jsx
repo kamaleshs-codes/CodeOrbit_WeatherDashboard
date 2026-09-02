@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { searchLocations } from "../services/geocodingApi";
+import { FiSearch } from "react-icons/fi";
 
 const DashboardSearch = ({ onSearch }) => {
   const [search, setSearch] = useState("");
@@ -53,9 +54,10 @@ const DashboardSearch = ({ onSearch }) => {
   };
 
   return (
-    <div className='relative'>
+    <div className='relative w-1/3'>
+      <FiSearch className='absolute left-4 top-1/2 -translate-y-1/2 text-xl' />
       <input
-        className='border rounded-full w-sm py-3 px-6 bg-card text-secondary font-semibold'
+        className='border rounded-full w-sm py-3 pl-10 px-6 bg-card text-secondary font-semibold'
         type='text'
         placeholder='Search Weather, Places...'
         value={search}
@@ -75,14 +77,14 @@ const DashboardSearch = ({ onSearch }) => {
               type='button'
               className={`w-full text-left px-4 py-3 transition-colors ${
                 index === 0
-                  ? "bg-secondary text-primary hover:bg-secondary"
-                  : "bg-primary text-secondary hover:bg-secondary"
+                  ? "bg-secondary text-primary"
+                  : "bg-primary text-secondary hover:bg-accent"
               }`}
               onClick={() => handleLocationSelect(location)}>
               <p className='font-semibold'>{location.name}</p>
 
               <p
-                className={`text-sm ${
+                className={`text-sm w-full ${
                   index === 0 ? "text-primary" : "text-secondary"
                 }`}>
                 {location.state && `${location.state}, `}
