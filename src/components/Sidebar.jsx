@@ -18,8 +18,8 @@ const Sidebar = () => {
           <SideNavList to='/forecast' icon={FiCalendar}>
             Forecast
           </SideNavList>
-          <SideNavList to='/places' icon={FiMapPin}>
-            Places
+          <SideNavList to='/weathermap' icon={FiMapPin} className="text-lg">
+            Weather Map
           </SideNavList>
           <SideNavList to='/settings' icon={FiSettings}>
             Settings

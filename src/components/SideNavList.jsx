@@ -1,19 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export const SideNavList = ({ children, to, icon: Icon }) => {
+export const SideNavList = ({ children, to, icon: Icon, className = "" }) => {
   return (
     <li>
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `block py-4 border-b border-border-muted ${
+          `block py-4 border-b border-border-muted ${className} ${
             isActive
               ? "bg-secondary text-text-main"
               : "bg-primary text-text-muted hover:bg-accent"
-          }`
+            }`
         }>
-        <div className="flex items-center gap-2 px-3">
+        <div className='flex items-center gap-2 px-3'>
           <Icon className='text-xl' />
           <span>{children}</span>
         </div>
