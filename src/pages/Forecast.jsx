@@ -6,10 +6,12 @@ import { processForecastData } from "../utils/processForecastData";
 import { PageHeader } from "../components/PageHeader";
 import { HourlyForecast } from "../components/HourlyForecast";
 import { processHourlyForecastData } from "../utils/processHourlyForecastData";
+import { useLocation } from "../context/LocationContext";
 
-export const Forecast = ({ location }) => {
+export const Forecast = () => {
   const [forecast, setForecast] = useState([]);
   const [hourlyForecast, setHourlyForecast] = useState([]);
+  const { location } = useLocation();
   useEffect(() => {
     const fetchForecast = async () => {
       try {
@@ -30,7 +32,7 @@ export const Forecast = ({ location }) => {
     <section>
       <PageHeader
         title='Forecast'
-        subtitle='Know Weather Forecast for Chennai'
+        subtitle={`Know Weather Forecast for ${location.name}`}
       />
       <main className='p-4'>
         <div className='flex justify-between items-center bg-card-theme px-5 py-3 rounded-lg'>

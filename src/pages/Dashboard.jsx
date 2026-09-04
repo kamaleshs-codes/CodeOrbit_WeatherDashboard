@@ -5,10 +5,12 @@ import { WeatherDetailsCard } from "../components/WeatherDetailsCard";
 import { getLocalDateTime } from "../utils/DateTimeFormat";
 import DashboardHeader from "../components/DashboardHeader";
 import { getAirQuality } from "../services/airQualityApi";
+import { useLocation } from "../context/LocationContext";
 
-export const Dashboard = ({ location, setLocation }) => {
+export const Dashboard = () => {
   const [weather, setWeather] = useState(null);
   const [airQuality, setAirQuality] = useState(null);
+  const { location, setLocation } = useLocation();
 
   useEffect(() => {
     const fetchWeather = async () => {
