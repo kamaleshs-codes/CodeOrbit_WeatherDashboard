@@ -47,7 +47,6 @@ export const WeatherMap = () => {
                   url={`https://tile.openweathermap.org/map/${layerNames[activeLayer]}/{z}/{x}/{y}.png?appid=${
                     import.meta.env.VITE_WEATHER_API_KEY
                   }`}
-                  opacity={0.5}
                 />
                 <MapUpdater position={selectedPosition} />
                 <Marker position={selectedPosition}>
@@ -58,8 +57,8 @@ export const WeatherMap = () => {
                   </Popup>
                 </Marker>
               </MapContainer>
-              <div className='absolute top-4 right-4 z-[1000] rounded-xl bg-primary p-3 shadow-lg'>
-                <h3 className='mb-2 text-sm font-semibold text-secondary'>
+              <div className='absolute top-4 right-4 z-[1000] rounded-xl bg-main/65 p-3 shadow-lg'>
+                <h3 className='mb-2 text-md font-semibold text-text-muted'>
                   Weather Layers
                 </h3>
                 <div className='flex flex-col gap-2'>

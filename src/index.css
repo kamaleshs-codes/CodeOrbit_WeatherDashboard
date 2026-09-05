@@ -11,12 +11,13 @@
   --primary: #f7fdff;
   --secondary: #00203b;
   --main: #cff1ff;
+  --accent: #00aaff;
   --text-main: #e0f1ff;
   --text-muted: #000752;
-  --accent: #00a2ff;
-  --card-start: #002338;
-  --card-mid: #001f7a;
-  --card-end: #006b8f;
+  --text-light: #7a9596;
+  --card-start: #09005c;
+  --card-mid: #0026a1;
+  --card-end: #3355ff;
   --card-contrast-high: #5cc0f9;
   --card-contrast-low: #a7f1fe;
   --border: #000b27;
@@ -32,8 +33,9 @@
   --color-accent: var(--accent);
   --color-text-main: var(--text-main);
   --color-text-accent: var(--accent);
+  --color-text-light: var(--text-light);
   --background-image-inner-card: linear-gradient(
-    155deg,
+    230deg,
     var(--card-start),
     var(--card-mid),
     var(--card-end)
