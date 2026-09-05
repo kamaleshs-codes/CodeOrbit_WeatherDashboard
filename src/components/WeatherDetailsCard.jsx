@@ -19,24 +19,42 @@ import sunriseIcon from "../assets/weathersvg/sunrise.svg";
 import sunIcon from "../assets/weathersvg/sun.svg";
 import sunsetIcon from "../assets/weathersvg/sunset.svg";
 import { daylightSeconds } from "../utils/DayLightSeconds";
+import {
+  convertTemperature,
+  temperatureSymbol,
+} from "../utils/weathersettings";
+import { useSettings } from "../context/SettingsContext";
 
 export const WeatherDetailsCard = ({ weather, dateTime, airQuality }) => {
+  const { settings } = useSettings();
   const { sunrise, sunset } = dateTime;
   const windDirection = getWindDirection(weather.wind.deg);
   const visibilityKm = weather.visibility / 1000;
   const visibilityLevel = getVisibilityLevel(visibilityKm);
   const aqi = airQuality.list[0].main.aqi;
   const AQLevel = getAirQualityLevel(aqi);
-  const minTemp = Math.round(weather.main.temp_min);
-  const maxTemp = Math.round(weather.main.temp_max);
-  const dewPoint = Math.round(
-    dewPointCalculation(weather.main.temp, weather.main.humidity),
+  const minTemp = Math.round(
+    convertTemperature(weather.main.temp_min, settings.temperatureUnit),
+  );
+
+  const maxTemp = Math.round(
+    convertTemperature(weather.main.temp_max, settings.temperatureUnit),
+  );
+  const dewPoint = dewPointCalculation(
+    weather.main.temp,
+    weather.main.humidity,
+  );
+  const dewPointConvert = Math.round(
+    convertTemperature(dewPoint, settings.temperatureUnit),
   );
   const cloudiness = weather.clouds.all;
   const cloudLevel = getCloudinessLevel(cloudiness);
   const pressure = weather.main.pressure;
   const pressureLevel = getPressureLevel(pressure);
-  const { daylightDuration } = daylightSeconds(weather.sys.sunrise, weather.sys.sunset);
+  const { daylightDuration } = daylightSeconds(
+    weather.sys.sunrise,
+    weather.sys.sunset,
+  );
 
   const cards = [
     {
@@ -48,7 +66,7 @@ export const WeatherDetailsCard = ({ weather, dateTime, airQuality }) => {
     {
       title: "Humidity",
       value: `${weather.main.humidity}%`,
-      secondary: `${dewPoint}°C Dp`,
+      secondary: `${dewPointConvert}${temperatureSymbol(settings.temperatureUnit)} Dp`,
       icon: WiHumidity,
     },
     {
@@ -118,7 +136,7 @@ export const WeatherDetailsCard = ({ weather, dateTime, airQuality }) => {
                 <img src={sunriseIcon} alt='' className='w-16 h-16' />
                 <img src={sunsetIcon} alt='' className='w-16 h-16' />
               </div>
-              <h3 className="text-xl font-semibold">Daylight</h3>
+              <h3 className='text-xl font-semibold'>Daylight</h3>
               <p>{daylightDuration}</p>
             </div>
           </InnerCard>
@@ -128,7 +146,11 @@ export const WeatherDetailsCard = ({ weather, dateTime, airQuality }) => {
               <div className='mt-2'>
                 <p className='text-xl'>Low / High</p>
                 <p>
-                  {minTemp}°C - {maxTemp}°C
+                  {minTemp}
+                  {temperatureSymbol(settings.temperatureUnit)}
+                  {" - "}
+                  {maxTemp}
+                  {temperatureSymbol(settings.temperatureUnit)}
                 </p>
               </div>
               <WiThermometer className='text-3xl' />

@@ -3,20 +3,22 @@ import { getWeather } from "../services/weatherapi";
 import { getLocalDateTime } from "../utils/DateTimeFormat";
 import { Card } from "../components/ui/Card";
 import { FiMapPin } from "react-icons/fi";
+import { useSettings } from "../context/SettingsContext";
+import { convertTemperature } from "../utils/weathersettings";
+import { temperatureSymbol } from "../utils/weathersettings";
 
 export const WeatherCard = ({ weather, dateTime }) => {
   const { day, date, time } = dateTime;
   const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+  const { settings } = useSettings();
 
   return (
     <Card>
-      <h2 className='text-2xl font-semibold mb-3'>
-        Current Weather
-      </h2>
+      <h2 className='text-2xl font-semibold mb-3'>Current Weather</h2>
       <section className='bg-inner-card rounded-xl shadow-subtle'>
         <article className='p-4'>
           <p className='flex gap-1 w-max text-center bg-primary hover:bg-accent text-secondary border border-border rounded-full px-4 py-3 mt-2 font-semibold'>
-          <FiMapPin className="text-lg"/> <span>{weather.name}</span> 
+            <FiMapPin className='text-lg' /> <span>{weather.name}</span>
           </p>
           <div className='flex justify-around mt-3'>
             <div className='flex flex-col gap-2'>
@@ -29,18 +31,28 @@ export const WeatherCard = ({ weather, dateTime }) => {
             </div>
             <div className='flex flex-col justify-around'>
               <p className='text-4xl'>
-                {Math.round(weather.main.temp)}
-                <span className='text-2xl align-top'>&deg;</span>
-                <span className='align-baseline text-3xl'>C</span>
+                {Math.round(
+                  convertTemperature(
+                    weather.main.temp,
+                    settings.temperatureUnit,
+                  ),
+                )}
+                <span className='text-3xl'>
+                  {temperatureSymbol(settings.temperatureUnit)}
+                </span>
               </p>
 
               <div>
                 <p className='font-semibold'>{weather.weather[0].main}</p>
-
                 <p className='text-sm'>
-                  Feels like {Math.round(weather.main.feels_like)}
-                  <span>&deg;</span>
-                  <span>C</span>
+                  Feels like{" "}
+                  {Math.round(
+                    convertTemperature(
+                      weather.main.feels_like,
+                      settings.temperatureUnit,
+                    ),
+                  )}
+                  <span>{temperatureSymbol(settings.temperatureUnit)}</span>
                 </p>
               </div>
             </div>
