@@ -57,7 +57,7 @@ const DashboardSearch = ({ onSearch }) => {
     <div className='relative w-1/3'>
       <FiSearch className='absolute left-4 top-1/2 -translate-y-1/2 text-xl' />
       <input
-        className='border rounded-full w-sm py-3 pl-10 px-6 bg-card text-secondary font-semibold'
+        className='border rounded-full w-sm py-3 pl-10 px-6 bg-card text-text-muted font-semibold'
         type='text'
         placeholder='Search Weather, Places...'
         value={search}
@@ -77,15 +77,15 @@ const DashboardSearch = ({ onSearch }) => {
               type='button'
               className={`w-full text-left px-4 py-3 transition-colors ${
                 index === 0
-                  ? "bg-secondary text-primary"
-                  : "bg-primary text-secondary hover:bg-accent"
+                  ? "bg-secondary text-text-main"
+                  : "bg-primary text-text- hover:bg-accent"
               }`}
               onClick={() => handleLocationSelect(location)}>
               <p className='font-semibold'>{location.name}</p>
 
               <p
                 className={`text-sm w-full ${
-                  index === 0 ? "text-primary" : "text-secondary"
+                  index === 0 ? "text-text-main" : "text-text-muted"
                 }`}>
                 {location.state && `${location.state}, `}
                 {location.country}

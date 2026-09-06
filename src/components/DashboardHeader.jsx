@@ -13,7 +13,7 @@ const DashboardHeader = ({ onSearch }) => {
           <DashboardSearch onSearch={onSearch} />
         </PageHeader>
       </div>
-      <div className='flex items-center gap-2 bg-secondary text-primary cursor-pointer hover:bg-accent hover:text-secondary p-3 border-b-2 border-border-muted border-l-2'>
+      <div className='flex items-center gap-2 bg-secondary text-text-main cursor-pointer hover:bg-accent hover:text-secondary p-3 border-b-2 border-border-muted border-l-2'>
         <div className='w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center'>
           <FiUser className='text-xl text-secondary' />
         </div>

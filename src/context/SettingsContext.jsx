@@ -1,4 +1,10 @@
-import { Children, createContext, useContext, useState } from "react";
+import {
+  Children,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const SettingsContext = createContext();
 
@@ -19,6 +25,13 @@ export const SettingsProvider = ({ children }) => {
       [key]: value,
     }));
   };
+
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "dark",
+      settings.theme === "dark",
+    );
+  }, [settings.theme]);
 
   return (
     <SettingsContext.Provider value={{ settings, updateSettings }}>

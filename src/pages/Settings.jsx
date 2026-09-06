@@ -16,7 +16,7 @@ export const Settings = () => {
               Customize how weather information is displayed.
             </p>
           </div>
-          <div className='bg-secondary text-primary rounded-lg px-6'>
+          <div className='bg-secondary text-text-main rounded-lg px-6'>
             <div className='flex items-center justify-between border-b border-border-muted py-4'>
               <div>
                 <h4 className='font-medium'>Temperature Unit</h4>
@@ -61,8 +61,7 @@ export const Settings = () => {
               Customize your default weather map view.
             </p>
           </div>
-
-          <div className='bg-secondary text-primary rounded-lg px-6'>
+          <div className='bg-secondary text-text-main rounded-lg px-6'>
             <div className='flex items-center justify-between py-4'>
               <div>
                 <h4 className='font-medium'>Default Map Layer</h4>
@@ -82,6 +81,32 @@ export const Settings = () => {
                 <option value='precipitation'>Precipitation</option>
                 <option value='wind'>Wind</option>
                 <option value='clouds'>Clouds</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className='rounded-xl border border-border-muted bg-primary px-8 py-6 mt-6'>
+          <div className='mb-4'>
+            <h3 className='text-xl font-semibold'>Appearance Settings</h3>
+            <p className='text-sm text-accent mt-1 font-semibold'>
+              Customize the visual appearance of the dashboard.
+            </p>
+          </div>
+          <div className='bg-secondary text-text-main rounded-lg px-6'>
+            <div className='flex items-center justify-between py-4'>
+              <div>
+                <h4 className='font-medium'>Theme</h4>
+                <p className='text-sm text-text-light'>
+                  Choose between light and dark appearance.
+                </p>
+              </div>
+              <select
+                value={settings.theme}
+                onChange={(e) => updateSettings("theme", e.target.value)}
+                className='rounded-lg border border-border-muted text-text-muted bg-main px-3 py-2 outline-none'>
+                <option value='light'>Light</option>
+                <option value='dark'>Dark</option>
               </select>
             </div>
           </div>

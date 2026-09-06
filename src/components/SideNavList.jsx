@@ -10,7 +10,7 @@ export const SideNavList = ({ children, to, icon: Icon, className = "" }) => {
           `block py-4 border-b border-border-muted ${className} ${
             isActive
               ? "bg-secondary text-text-main"
-              : "bg-primary text-text-muted hover:bg-accent"
+              : "bg-primary text-text-muted hover:text-secondary hover:bg-accent"
             }`
         }>
         <div className='flex items-center gap-2 px-3'>
