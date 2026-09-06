@@ -1,6 +1,7 @@
 import React from "react";
 import { useSettings } from "../context/SettingsContext";
 import { PageHeader } from "../components/PageHeader";
+import { Toggle } from "../components/ui/Toggle";
 
 export const Settings = () => {
   const { settings, updateSettings } = useSettings();
@@ -108,6 +109,54 @@ export const Settings = () => {
                 <option value='light'>Light</option>
                 <option value='dark'>Dark</option>
               </select>
+            </div>
+          </div>
+        </div>
+
+        <div className='rounded-xl border border-border-muted bg-primary px-8 py-6 mt-6'>
+          <div className='mb-4'>
+            <h3 className='text-xl font-semibold'>Notification Settings</h3>
+            <p className='text-sm text-accent mt-1 font-semibold'>
+              Manage weather notifications and automatic updates.
+            </p>
+          </div>
+          <div className='bg-secondary text-text-main rounded-lg px-6'>
+            <div className='flex items-center justify-between border-b border-border-muted py-4'>
+              <div>
+                <h4 className='font-medium'>Weather Alerts</h4>
+                <p className='text-sm text-text-light'>
+                  Receive notifications for important weather conditions.
+                </p>
+              </div>
+              <Toggle
+                checked={settings.weatherAlerts}
+                onChange={(value) => updateSettings("weatherAlerts", value)}
+              />
+            </div>
+            <div className='flex items-center justify-between border-b border-border-muted py-4'>
+              <div>
+                <h4 className='font-medium'>Daily Summary</h4>
+                <p className='text-sm text-text-light'>
+                  Show a daily overview of today's weather.
+                </p>
+              </div>
+              <Toggle
+                checked={settings.dailySummary}
+                onChange={(value) => updateSettings("dailySummary", value)}
+              />
+            </div>
+            <div className='flex items-center justify-between py-4'>
+              <div>
+                <h4 className='font-medium'>Auto Refresh</h4>
+                <p className='text-sm text-text-light'>
+                  Automatically update weather information periodically. (About
+                  5 Min)
+                </p>
+              </div>
+              <Toggle
+                checked={settings.autoRefresh}
+                onChange={(value) => updateSettings("autoRefresh", value)}
+              />
             </div>
           </div>
         </div>
