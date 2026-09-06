@@ -4,8 +4,14 @@ import { InnerCard } from "./ui/InnerCard";
 import { WiRaindrop, WiStrongWind } from "react-icons/wi";
 import { FiChevronRight } from "react-icons/fi";
 import { forecastDayDateFormat } from "../utils/forecastDayDateFormat";
+import {
+  convertTemperature,
+  temperatureSymbol,
+} from "../utils/weathersettings";
+import { useSettings } from "../context/SettingsContext";
 
 export const DayForecastCard = ({ forecast }) => {
+  const { settings } = useSettings();
   return (
     <section className='mt-3'>
       <Card>
@@ -34,14 +40,21 @@ export const DayForecastCard = ({ forecast }) => {
                     alt={day.condition}
                     className='w-16 h-16'
                   />
-
                   <p>{day.condition}</p>
-
                   <div className='flex gap-3'>
-                    <h4>{day.high}&deg;C</h4>
-                    <h4>{day.low}&deg;C</h4>
+                    <h4>
+                      {Math.round(
+                        convertTemperature(day.high, settings.temperatureUnit),
+                      )}
+                      {temperatureSymbol(settings.temperatureUnit)}
+                    </h4>
+                    <h4>
+                      {Math.round(
+                        convertTemperature(day.low, settings.temperatureUnit),
+                      )}
+                      {temperatureSymbol(settings.temperatureUnit)}
+                    </h4>
                   </div>
-
                   <div className='text-sm flex gap-2'>
                     <p className='flex items-center'>
                       <span className='text-cyan-500 text-2xl'>

@@ -8,6 +8,7 @@ import { HourlyForecast } from "../components/HourlyForecast";
 import { processHourlyForecastData } from "../utils/processHourlyForecastData";
 import { useLocation } from "../context/LocationContext";
 
+
 export const Forecast = () => {
   const [forecast, setForecast] = useState([]);
   const [hourlyForecast, setHourlyForecast] = useState([]);

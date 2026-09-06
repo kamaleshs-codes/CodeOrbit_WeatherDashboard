@@ -2,9 +2,16 @@ import React from "react";
 import { InnerCard } from "./ui/InnerCard";
 import { WiRaindrop, WiStrongWind } from "react-icons/wi";
 import { HourlyTimeFormat } from "../utils/HourlyTimeFormat";
+import { useSettings } from "../context/SettingsContext";
+import {
+  convertTemperature,
+  temperatureSymbol,
+} from "../utils/weathersettings";
 
 export const HourlyForecastCard = ({ hour }) => {
   const formattedTime = HourlyTimeFormat(hour.time);
+  console.log("Hourly data:", hour);
+  const { settings } = useSettings();
 
   return (
     <InnerCard>
@@ -17,7 +24,12 @@ export const HourlyForecastCard = ({ hour }) => {
           className='w-16 h-16'
         />
 
-        <p className='text-xl font-semibold'>{hour.temperature}°C</p>
+        <p className='text-xl font-semibold'>
+          {Math.round(
+            convertTemperature(hour.temperature, settings.temperatureUnit),
+          )}
+          {temperatureSymbol(settings.temperatureUnit)}
+        </p>
 
         <p className='text-sm'>{hour.condition}</p>
 
