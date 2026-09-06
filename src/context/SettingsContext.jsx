@@ -10,7 +10,7 @@ export const SettingsProvider = ({ children }) => {
     weatherAlerts: true,
     dailySummary: true,
     autoRefresh: true,
-    defaultMapLayer: "temperature",
+    defaultMapLayer: "none",
   });
 
   const updateSettings = (key, value) => {

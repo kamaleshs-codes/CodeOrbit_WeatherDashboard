@@ -3,6 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { useLocation } from "../context/LocationContext";
 import { Card } from "../components/ui/Card";
 import { PageHeader } from "../components/PageHeader";
+import { useSettings } from "../context/SettingsContext";
 
 const MapUpdater = ({ position }) => {
   const map = useMap();
@@ -14,8 +15,9 @@ const MapUpdater = ({ position }) => {
 
 export const WeatherMap = () => {
   const { location } = useLocation();
+  const { settings } = useSettings();
   const selectedPosition = [location.lat, location.lon];
-  const [activeLayer, setActiveLayer] = useState("temperature");
+  const [activeLayer, setActiveLayer] = useState(settings.defaultMapLayer);
   const layerNames = {
     temperature: "temp_new",
     precipitation: "precipitation_new",
@@ -42,12 +44,14 @@ export const WeatherMap = () => {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
-                <TileLayer
-                  key={activeLayer}
-                  url={`https://tile.openweathermap.org/map/${layerNames[activeLayer]}/{z}/{x}/{y}.png?appid=${
-                    import.meta.env.VITE_WEATHER_API_KEY
-                  }`}
-                />
+                {activeLayer !== "none" && (
+                  <TileLayer
+                    key={activeLayer}
+                    url={`https://tile.openweathermap.org/map/${layerNames[activeLayer]}/{z}/{x}/{y}.png?appid=${
+                      import.meta.env.VITE_WEATHER_API_KEY
+                    }`}
+                  />
+                )}
                 <MapUpdater position={selectedPosition} />
                 <Marker position={selectedPosition}>
                   <Popup>
@@ -62,6 +66,15 @@ export const WeatherMap = () => {
                   Weather Layers
                 </h3>
                 <div className='flex flex-col gap-2'>
+                  <button
+                    onClick={() => setActiveLayer("none")}
+                    className={`rounded-lg px-3 py-2 text-left text-sm font-semibold ${
+                      activeLayer === "none"
+                        ? "bg-secondary text-primary"
+                        : "text-secondary hover:bg-accent"
+                    }`}>
+                    🗺️ Base Map
+                  </button>
                   <button
                     onClick={() => setActiveLayer("temperature")}
                     className={`rounded-lg px-3 py-2 text-left text-sm font-semibold ${

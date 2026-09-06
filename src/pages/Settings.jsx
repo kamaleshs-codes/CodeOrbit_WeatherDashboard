@@ -53,6 +53,39 @@ export const Settings = () => {
             </div>
           </div>
         </div>
+
+        <div className='rounded-xl border border-border-muted bg-primary px-8 py-6 mt-6'>
+          <div className='mb-4'>
+            <h3 className='text-xl font-semibold'>Map Settings</h3>
+            <p className='text-sm text-accent mt-1 font-semibold'>
+              Customize your default weather map view.
+            </p>
+          </div>
+
+          <div className='bg-secondary text-primary rounded-lg px-6'>
+            <div className='flex items-center justify-between py-4'>
+              <div>
+                <h4 className='font-medium'>Default Map Layer</h4>
+                <p className='text-sm text-text-light'>
+                  Choose the weather layer shown when the map opens.
+                </p>
+              </div>
+
+              <select
+                value={settings.defaultMapLayer}
+                onChange={(e) =>
+                  updateSettings("defaultMapLayer", e.target.value)
+                }
+                className='rounded-lg border border-border-muted text-text-muted bg-main px-3 py-2 outline-none'>
+                <option value='none'>Base Map</option>
+                <option value='temperature'>Temperature</option>
+                <option value='precipitation'>Precipitation</option>
+                <option value='wind'>Wind</option>
+                <option value='clouds'>Clouds</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </main>
     </section>
   );
