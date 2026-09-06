@@ -5,7 +5,9 @@ import { HourlyTimeFormat } from "../utils/HourlyTimeFormat";
 import { useSettings } from "../context/SettingsContext";
 import {
   convertTemperature,
+  convertWindSpeed,
   temperatureSymbol,
+  windSpeedSymbol,
 } from "../utils/weathersettings";
 
 export const HourlyForecastCard = ({ hour }) => {
@@ -45,7 +47,8 @@ export const HourlyForecastCard = ({ hour }) => {
             <span className='text-xl'>
               <WiStrongWind />
             </span>
-            {hour.wind} km/h
+            {Math.round(convertWindSpeed(hour.wind, settings.windSpeedUnit))}{" "}
+            {windSpeedSymbol(settings.windSpeedUnit)}
           </p>
         </div>
       </div>

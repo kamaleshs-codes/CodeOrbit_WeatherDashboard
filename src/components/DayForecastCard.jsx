@@ -6,7 +6,9 @@ import { FiChevronRight } from "react-icons/fi";
 import { forecastDayDateFormat } from "../utils/forecastDayDateFormat";
 import {
   convertTemperature,
+  convertWindSpeed,
   temperatureSymbol,
+  windSpeedSymbol,
 } from "../utils/weathersettings";
 import { useSettings } from "../context/SettingsContext";
 
@@ -67,7 +69,10 @@ export const DayForecastCard = ({ forecast }) => {
                       <span className='text-xl'>
                         <WiStrongWind />
                       </span>
-                      {day.wind} km/h
+                      {Math.round(
+                        convertWindSpeed(day.wind, settings.windSpeedUnit),
+                      )}{" "}
+                      {windSpeedSymbol(settings.windSpeedUnit)}
                     </p>
                   </div>
                 </div>

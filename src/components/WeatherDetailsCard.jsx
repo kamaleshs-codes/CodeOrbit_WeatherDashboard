@@ -21,7 +21,10 @@ import sunsetIcon from "../assets/weathersvg/sunset.svg";
 import { daylightSeconds } from "../utils/DayLightSeconds";
 import {
   convertTemperature,
+  convertWindSpeed,
+  mpsToKmh,
   temperatureSymbol,
+  windSpeedSymbol,
 } from "../utils/weathersettings";
 import { useSettings } from "../context/SettingsContext";
 
@@ -55,11 +58,15 @@ export const WeatherDetailsCard = ({ weather, dateTime, airQuality }) => {
     weather.sys.sunrise,
     weather.sys.sunset,
   );
+  const windSpeedKmph = mpsToKmh(weather.wind.speed);
+  const windSpeed = Math.round(
+    convertWindSpeed(windSpeedKmph, settings.windSpeedUnit),
+  );
 
   const cards = [
     {
       title: "Wind Status",
-      value: `${weather.wind.speed} m/s`,
+      value: `${windSpeed} ${windSpeedSymbol(settings.windSpeedUnit)}`,
       secondary: windDirection,
       icon: WiStrongWind,
     },
