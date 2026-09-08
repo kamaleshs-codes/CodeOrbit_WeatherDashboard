@@ -6,12 +6,13 @@ import { getLocalDateTime } from "../utils/DateTimeFormat";
 import DashboardHeader from "../components/DashboardHeader";
 import { getAirQuality } from "../services/airQualityApi";
 import { useLocation } from "../context/LocationContext";
-import { useSettings } from "../context/SettingsContext";
+import { useRefresh } from "../context/RefreshContext";
 
 export const Dashboard = () => {
   const [weather, setWeather] = useState(null);
   const [airQuality, setAirQuality] = useState(null);
   const { location, setLocation } = useLocation();
+  const { refreshKey } = useRefresh();
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -24,7 +25,7 @@ export const Dashboard = () => {
       setAirQuality(aqData);
     };
     fetchWeather();
-  }, [location]);
+  }, [location, refreshKey]);
 
   if (!weather || !airQuality) {
     return (

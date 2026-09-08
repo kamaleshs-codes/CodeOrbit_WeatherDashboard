@@ -150,7 +150,7 @@ export const Settings = () => {
                 <h4 className='font-medium'>Auto Refresh</h4>
                 <p className='text-sm text-text-light'>
                   Automatically update weather information periodically. (About
-                  5 Min)
+                  10 Min)
                 </p>
               </div>
               <Toggle

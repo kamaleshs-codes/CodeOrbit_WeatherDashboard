@@ -54,10 +54,10 @@ const DashboardSearch = ({ onSearch }) => {
   };
 
   return (
-    <div className='relative w-1/3'>
+    <div className='relative'>
       <FiSearch className='absolute left-4 top-1/2 -translate-y-1/2 text-xl' />
       <input
-        className='border rounded-full w-sm py-3 pl-10 px-6 bg-card text-text-muted font-semibold'
+        className='border rounded-full w-75 py-3 pl-10 px-6 bg-card text-text-muted font-semibold'
         type='text'
         placeholder='Search Weather, Places...'
         value={search}

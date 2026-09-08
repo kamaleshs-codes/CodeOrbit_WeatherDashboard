@@ -7,12 +7,14 @@ import { PageHeader } from "../components/PageHeader";
 import { HourlyForecast } from "../components/HourlyForecast";
 import { processHourlyForecastData } from "../utils/processHourlyForecastData";
 import { useLocation } from "../context/LocationContext";
-
+import { useRefresh } from "../context/RefreshContext";
 
 export const Forecast = () => {
   const [forecast, setForecast] = useState([]);
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const { location } = useLocation();
+  const { refreshKey, refreshStatus } = useRefresh();
+
   useEffect(() => {
     const fetchForecast = async () => {
       try {
@@ -28,12 +30,13 @@ export const Forecast = () => {
       }
     };
     fetchForecast();
-  }, [location]);
+  }, [location, refreshKey]);
   return (
     <section>
       <PageHeader
         title='Forecast'
         subtitle={`Know Weather Forecast for ${location.name}`}
+        refreshStatus={refreshStatus}
       />
       <main className='p-4'>
         <div className='flex justify-between items-center bg-card-theme px-5 py-3 rounded-lg'>
