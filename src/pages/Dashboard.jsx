@@ -7,30 +7,78 @@ import DashboardHeader from "../components/DashboardHeader";
 import { getAirQuality } from "../services/airQualityApi";
 import { useLocation } from "../context/LocationContext";
 import { useRefresh } from "../context/RefreshContext";
+import { DailySummary } from "../components/DailySummary";
+import { getDailySummary } from "../services/dailySummaryApi";
+import {
+  getTodaySummary,
+  getWeatherCondition,
+  getTemperatureRange,
+  getRainPossibility,
+  getWindCondition,
+  generateDailySummary,
+} from "../utils/dailySummary";
+import { getWeatherAlerts } from "../utils/weatherAlerts";
+import { useSettings } from "../context/SettingsContext";
 
 export const Dashboard = () => {
   const [weather, setWeather] = useState(null);
   const [airQuality, setAirQuality] = useState(null);
+  const [dailySummary, setDailySummary] = useState(null);
+  const [weatherAlerts, setWeatherAlerts] = useState([]);
+
   const { location, setLocation } = useLocation();
   const { refreshKey } = useRefresh();
+  const { settings } = useSettings();
+
+  const weatherAlert = settings.weatherAlerts;
 
   useEffect(() => {
     const fetchWeather = async () => {
       const weatherData = await getWeather(location.lat, location.lon);
       setWeather(weatherData);
+
+      if (weatherAlert) {
+        const alerts = getWeatherAlerts(weatherData);
+        setWeatherAlerts(alerts);
+
+        console.log("Weather Alerts:", alerts);
+      } else {
+        setWeatherAlerts([]);
+      }
+
       const aqData = await getAirQuality(
         weatherData.coord.lat,
         weatherData.coord.lon,
       );
       setAirQuality(aqData);
+
+      const dailySummaryData = await getDailySummary(
+        location.lat,
+        location.lon,
+      );
+
+      const todaySummary = getTodaySummary(dailySummaryData);
+      const weatherCondition = getWeatherCondition(todaySummary);
+      const temperatureRange = getTemperatureRange(todaySummary);
+      const rainPossibility = getRainPossibility(todaySummary);
+      const windCondition = getWindCondition(todaySummary);
+
+      const summaryText = generateDailySummary(
+        weatherCondition,
+        temperatureRange,
+        rainPossibility,
+        windCondition,
+      );
+      setDailySummary(summaryText);
+      console.log("Daily Summary Text - ", summaryText);
     };
     fetchWeather();
-  }, [location, refreshKey]);
+  }, [location, refreshKey, weatherAlert]);
 
   if (!weather || !airQuality) {
     return (
       <div>
-        <DashboardHeader onSearch={setLocation} />
+        <DashboardHeader onSearch={setLocation} weatherAlerts={weatherAlerts} />
         <p className='text-center mt-3'>Loading...</p>
       </div>
     );
@@ -40,12 +88,14 @@ export const Dashboard = () => {
 
   return (
     <div>
-      <DashboardHeader onSearch={setLocation} />
+      <DashboardHeader onSearch={setLocation} weatherAlerts={weatherAlerts} />
       <section className='p-4 flex gap-7'>
         <div className='w-1/3'>
-          <WeatherCard weather={weather} dateTime={dateTime} />
+          <div className='flex flex-col'>
+            <WeatherCard weather={weather} dateTime={dateTime} />
+            <DailySummary summary={dailySummary} />
+          </div>
         </div>
-
         <div className='flex-1'>
           <WeatherDetailsCard
             weather={weather}

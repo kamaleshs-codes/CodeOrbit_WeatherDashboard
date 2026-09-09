@@ -4,7 +4,7 @@ import { PageHeader } from "./PageHeader";
 import { FiUser } from "react-icons/fi";
 import { useRefresh } from "../context/RefreshContext";
 
-const DashboardHeader = ({ onSearch }) => {
+const DashboardHeader = ({ onSearch, weatherAlerts }) => {
   const { refreshStatus } = useRefresh();
   return (
     <div className='flex justify-between'>
@@ -12,7 +12,8 @@ const DashboardHeader = ({ onSearch }) => {
         <PageHeader
           title='Hi, Kamalesh! Good Morning,'
           subtitle="Here's your Weather Overview"
-          refreshStatus={refreshStatus}>
+          refreshStatus={refreshStatus}
+          weatherAlerts={weatherAlerts}>
           <DashboardSearch onSearch={onSearch} />
         </PageHeader>
       </div>

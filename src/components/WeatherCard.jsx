@@ -16,11 +16,11 @@ export const WeatherCard = ({ weather, dateTime }) => {
     <Card>
       <h2 className='text-2xl font-semibold mb-3'>Current Weather</h2>
       <section className='bg-inner-card rounded-xl shadow-subtle'>
-        <article className='p-4'>
-          <p className='flex gap-1 w-max text-center bg-primary hover:bg-accent hover:text-secondary text-text-muted border border-border rounded-full px-4 py-3 mt-2 font-semibold'>
+        <article className='px-4 py-2'>
+          <p className='flex gap-1 w-max text-center bg-primary hover:bg-accent hover:text-secondary text-text-muted border border-border rounded-full px-4 py-2 mt-1 font-semibold'>
             <FiMapPin className='text-lg' /> <span>{weather.name}</span>
           </p>
-          <div className='flex justify-around mt-3'>
+          <div className='flex justify-around mt-2'>
             <div className='flex flex-col gap-2'>
               <div>
                 <h3 className='font-semibold text-lg'>{day}</h3>
@@ -41,7 +41,6 @@ export const WeatherCard = ({ weather, dateTime }) => {
                   {temperatureSymbol(settings.temperatureUnit)}
                 </span>
               </p>
-
               <div>
                 <p className='font-semibold'>{weather.weather[0].main}</p>
                 <p className='text-sm'>
