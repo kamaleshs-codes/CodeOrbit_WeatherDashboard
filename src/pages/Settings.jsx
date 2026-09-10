@@ -2,6 +2,7 @@ import React from "react";
 import { useSettings } from "../context/SettingsContext";
 import { PageHeader } from "../components/PageHeader";
 import { Toggle } from "../components/ui/Toggle";
+import { DefaultLocation } from "../components/defaultLocation";
 
 export const Settings = () => {
   const { settings, updateSettings } = useSettings();
@@ -10,10 +11,13 @@ export const Settings = () => {
     <section className='h-full'>
       <PageHeader title='Settings' subtitle='Manage your weather preferences' />
       <main className='p-6 w-220 mx-auto'>
+        
+        <DefaultLocation />
+
         <div className='rounded-xl border border-border-muted bg-primary px-8 py-6'>
           <div className='mb-4'>
             <h3 className='text-xl font-semibold'>General Settings</h3>
-            <p className='text-sm text-accent mt-1 font-semibold'>
+            <p className='text-sm text-accent-secondary mt-1 font-semibold'>
               Customize how weather information is displayed.
             </p>
           </div>
@@ -58,7 +62,7 @@ export const Settings = () => {
         <div className='rounded-xl border border-border-muted bg-primary px-8 py-6 mt-6'>
           <div className='mb-4'>
             <h3 className='text-xl font-semibold'>Map Settings</h3>
-            <p className='text-sm text-accent mt-1 font-semibold'>
+            <p className='text-sm text-accent-secondary mt-1 font-semibold'>
               Customize your default weather map view.
             </p>
           </div>
@@ -90,7 +94,7 @@ export const Settings = () => {
         <div className='rounded-xl border border-border-muted bg-primary px-8 py-6 mt-6'>
           <div className='mb-4'>
             <h3 className='text-xl font-semibold'>Appearance Settings</h3>
-            <p className='text-sm text-accent mt-1 font-semibold'>
+            <p className='text-sm text-accent-secondary mt-1 font-semibold'>
               Customize the visual appearance of the dashboard.
             </p>
           </div>
@@ -116,7 +120,7 @@ export const Settings = () => {
         <div className='rounded-xl border border-border-muted bg-primary px-8 py-6 mt-6'>
           <div className='mb-4'>
             <h3 className='text-xl font-semibold'>Notification Settings</h3>
-            <p className='text-sm text-accent mt-1 font-semibold'>
+            <p className='text-sm text-accent-secondary mt-1 font-semibold'>
               Manage weather notifications and automatic updates.
             </p>
           </div>

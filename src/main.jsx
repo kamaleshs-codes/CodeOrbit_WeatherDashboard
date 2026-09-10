@@ -11,13 +11,13 @@ import { RefreshProvider } from "./context/RefreshContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <LocationProvider>
-        <SettingsProvider>
+      <SettingsProvider>
+        <LocationProvider>
           <RefreshProvider>
             <App />
           </RefreshProvider>
-        </SettingsProvider>
-      </LocationProvider>
+        </LocationProvider>
+      </SettingsProvider>
     </BrowserRouter>
   </StrictMode>,
 );

@@ -31,11 +31,15 @@ export const Dashboard = () => {
   const { settings } = useSettings();
 
   const weatherAlert = settings.weatherAlerts;
+  const dailySummaryEnabled = settings.dailySummary;
 
   useEffect(() => {
     const fetchWeather = async () => {
       const weatherData = await getWeather(location.lat, location.lon);
       setWeather(weatherData);
+      console.log("Selected Location:", location);
+      console.log("Weather API Data:", weatherData);
+      console.log("Weather Condition:", weatherData?.weather);
 
       if (weatherAlert) {
         const alerts = getWeatherAlerts(weatherData);
@@ -43,7 +47,7 @@ export const Dashboard = () => {
 
         console.log("Weather Alerts:", alerts);
       } else {
-        setWeatherAlerts([]);
+        setWeatherAlerts(null);
       }
 
       const aqData = await getAirQuality(
@@ -52,28 +56,31 @@ export const Dashboard = () => {
       );
       setAirQuality(aqData);
 
-      const dailySummaryData = await getDailySummary(
-        location.lat,
-        location.lon,
-      );
+      if (dailySummaryEnabled) {
+        const dailySummaryData = await getDailySummary(
+          location.lat,
+          location.lon,
+        );
 
-      const todaySummary = getTodaySummary(dailySummaryData);
-      const weatherCondition = getWeatherCondition(todaySummary);
-      const temperatureRange = getTemperatureRange(todaySummary);
-      const rainPossibility = getRainPossibility(todaySummary);
-      const windCondition = getWindCondition(todaySummary);
+        const todaySummary = getTodaySummary(dailySummaryData);
+        const weatherCondition = getWeatherCondition(todaySummary);
+        const temperatureRange = getTemperatureRange(todaySummary);
+        const rainPossibility = getRainPossibility(todaySummary);
+        const windCondition = getWindCondition(todaySummary);
 
-      const summaryText = generateDailySummary(
-        weatherCondition,
-        temperatureRange,
-        rainPossibility,
-        windCondition,
-      );
-      setDailySummary(summaryText);
-      console.log("Daily Summary Text - ", summaryText);
+        const summaryText = generateDailySummary(
+          weatherCondition,
+          temperatureRange,
+          rainPossibility,
+          windCondition,
+        );
+        setDailySummary(summaryText);
+      } else {
+        setDailySummary(null);
+      }
     };
     fetchWeather();
-  }, [location, refreshKey, weatherAlert]);
+  }, [location, refreshKey, weatherAlert, dailySummaryEnabled]);
 
   if (!weather || !airQuality) {
     return (
@@ -93,7 +100,7 @@ export const Dashboard = () => {
         <div className='w-1/3'>
           <div className='flex flex-col'>
             <WeatherCard weather={weather} dateTime={dateTime} />
-            <DailySummary summary={dailySummary} />
+            {dailySummaryEnabled && <DailySummary summary={dailySummary} />}
           </div>
         </div>
         <div className='flex-1'>

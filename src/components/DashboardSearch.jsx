@@ -78,14 +78,14 @@ const DashboardSearch = ({ onSearch }) => {
               className={`w-full text-left px-4 py-3 transition-colors ${
                 index === 0
                   ? "bg-secondary text-text-main"
-                  : "bg-primary text-text- hover:bg-accent"
+                  : "bg-primary text-text-muted hover:text-secondary hover:bg-accent"
               }`}
               onClick={() => handleLocationSelect(location)}>
               <p className='font-semibold'>{location.name}</p>
 
               <p
                 className={`text-sm w-full ${
-                  index === 0 ? "text-text-main" : "text-text-muted"
+                  index === 0 ? "text-text-main" : "text-text-secondary"
                 }`}>
                 {location.state && `${location.state}, `}
                 {location.country}

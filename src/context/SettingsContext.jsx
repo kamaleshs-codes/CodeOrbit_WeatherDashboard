@@ -17,6 +17,13 @@ export const SettingsProvider = ({ children }) => {
     dailySummary: true,
     autoRefresh: true,
     defaultMapLayer: "none",
+    defaultLocation: {
+      name: "Chennai",
+      lat: 13.0878,
+      lon: 80.2785,
+      state: "Tamil Nadu",
+      country: "IN",
+    },
   });
 
   const updateSettings = (key, value) => {

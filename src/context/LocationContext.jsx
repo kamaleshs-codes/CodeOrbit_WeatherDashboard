@@ -1,15 +1,13 @@
 import React, { createContext, useContext, useState } from "react";
+import { useSettings } from "./SettingsContext";
 
 const LocationContext = createContext();
 
 export const LocationProvider = ({ children }) => {
-  const [location, setLocation] = useState({
-    name: "Chennai",
-    lat: 13.0878,
-    lon: 80.2785,
-    state: "Tamil Nadu",
-    country: "IN",
-  });
+  const { settings } = useSettings();
+
+  const [location, setLocation] = useState(settings.defaultLocation);
+
   return (
     <LocationContext.Provider value={{ location, setLocation }}>
       {children}

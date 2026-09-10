@@ -11,7 +11,8 @@
   --primary: #c9d5da;
   --secondary: #00203b;
   --main: #eefffe;
-  --accent: #0064fa;
+  --accent: #00ddfa;
+  --accent-secondary: #1500ff;
   --text-main: #e6eaed;
   --text-muted: #00053e;
   --text-light: #7a9596;
@@ -23,28 +24,32 @@
   --border: #000b27;
   --border-muted: #5e6071;
   --shadow: #000000b9;
+  --toggle: #66696a;
+  --toggle-thumb: #ffffff;
 }
 
 .dark {
-  --primary: #161f32;
-  --secondary: #000d26;
+  --primary: #1b212d;
+  --secondary: #00102f;
   --main: #111a2b;
   --accent: #00fbff;
-  --text-main: #78ceff;
+  --accent-secondary: #09eaff;
+  --text-main: #9fd5ff;
   --text-muted: #e7e7e7;
   --text-light: #94a3b8;
-
   --card-start: #12161f;
   --card-mid: #001e45;
   --card-end: #00091f;
-
   --card-contrast-high: #164e63;
   --card-contrast-low: #0e7490;
-
   --border: #334155;
   --border-muted: #475569;
   --shadow: #00000099;
+  --toggle: #ffffff;
+  --toggle-thumb: #000000;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-mooli: "Mooli", sans-serif;
@@ -52,6 +57,7 @@
   --color-secondary: var(--secondary);
   --color-main: var(--main);
   --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
   --color-text-main: var(--text-main);
   --color-text-accent: var(--accent);
   --color-text-light: var(--text-light);
@@ -71,4 +77,6 @@
   --color-border-muted: var(--border-muted);
   --shadow-subtle: 0 5px 5px 1px var(--shadow);
   --shadow-drop: 0 3px 3px 1px var(--shadow);
+  --color-toggle: var(--toggle);
+  --color-toggle-thumb: var(--toggle-thumb);
 }

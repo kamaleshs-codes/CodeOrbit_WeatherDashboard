@@ -13,7 +13,8 @@ const DashboardHeader = ({ onSearch, weatherAlerts }) => {
           title='Hi, Kamalesh! Good Morning,'
           subtitle="Here's your Weather Overview"
           refreshStatus={refreshStatus}
-          weatherAlerts={weatherAlerts}>
+          weatherAlerts={weatherAlerts}
+          showWeatherAlerts>
           <DashboardSearch onSearch={onSearch} />
         </PageHeader>
       </div>
