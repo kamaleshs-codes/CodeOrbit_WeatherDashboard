@@ -1,8 +1,8 @@
 import React from "react";
 import DashboardSearch from "./DashboardSearch";
 import { PageHeader } from "./PageHeader";
-import { FiUser } from "react-icons/fi";
 import { useRefresh } from "../context/RefreshContext";
+import { LuLogIn } from "react-icons/lu";
 
 const DashboardHeader = ({ onSearch, weatherAlerts }) => {
   const { refreshStatus } = useRefresh();
@@ -18,11 +18,9 @@ const DashboardHeader = ({ onSearch, weatherAlerts }) => {
           <DashboardSearch onSearch={onSearch} />
         </PageHeader>
       </div>
-      <div className='flex items-center gap-2 bg-secondary text-text-main cursor-pointer hover:bg-accent hover:text-secondary p-3 border-b-2 border-border-muted border-l-2'>
-        <div className='w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center'>
-          <FiUser className='text-xl text-secondary' />
-        </div>
-        <p className='font-semibold'>My Profile</p>
+      <div className='flex items-center justify-center gap-2 bg-secondary text-text-main cursor-pointer hover:bg-accent hover:text-secondary w-30 p-3 border-b-2 border-border-muted border-l-2'>
+        <p className='font-semibold'>Login</p>
+        <LuLogIn className="text-xl"/>
       </div>
     </div>
   );

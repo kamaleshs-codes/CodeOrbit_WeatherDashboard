@@ -1,6 +1,6 @@
 import { SideNavList } from "./SideNavList";
-import { FiGrid, FiCalendar, FiMapPin, FiSettings } from "react-icons/fi";
 import weatherImg from "../assets/weather_imgheader.png";
+import { LuCloudSunRain, LuLayoutDashboard, LuMap, LuSettings } from "react-icons/lu";
 
 const Sidebar = () => {
   return (
@@ -12,16 +12,16 @@ const Sidebar = () => {
         />
       <nav className='w-full text-center bg-secondary'>
         <ul className='flex flex-col bg-primary text-text-muted text-xl font-semibold'>
-          <SideNavList to='/dashboard' icon={FiGrid}>
+          <SideNavList to='/dashboard' icon={LuLayoutDashboard}>
             Dashboard
           </SideNavList>
-          <SideNavList to='/forecast' icon={FiCalendar}>
+          <SideNavList to='/forecast' icon={LuCloudSunRain}>
             Forecast
           </SideNavList>
-          <SideNavList to='/weathermap' icon={FiMapPin} className="text-lg">
+          <SideNavList to='/weathermap' icon={LuMap} className="text-lg">
             Weather Map
           </SideNavList>
-          <SideNavList to='/settings' icon={FiSettings}>
+          <SideNavList to='/settings' icon={LuSettings}>
             Settings
           </SideNavList>
         </ul>

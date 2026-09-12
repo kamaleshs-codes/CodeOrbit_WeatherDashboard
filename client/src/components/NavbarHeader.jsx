@@ -1,7 +1,9 @@
 import React from "react";
-import { FiHome, FiInfo, FiLogIn, FiMail } from "react-icons/fi";
+import { FiHome, FiInfo, FiMail } from "react-icons/fi";
+import { LuCircleHelp } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarHeader = () => {
   return (
     <header className='flex justify-between px-8 py-3 h-16 items-center font-mooli bg-secondary text-text-main font-semibold text-lg border-b-2 border-border shadow-subtle'>
       <h1>Weatherly</h1>
@@ -10,25 +12,25 @@ const Navbar = () => {
           <li>
             <div className="flex items-center gap-1 hover:text-accent">
               <span><FiHome/></span>
-              <a href='#'>Home</a>
+              <Link to='/'>Home</Link>
             </div>
           </li>
           <li>
             <div className="flex items-center gap-1 hover:text-accent">
               <span><FiInfo/></span>
-              <a href='#'>About</a>
+              <Link to='/about'>About</Link>
             </div>
           </li>
           <li>
             <div className="flex items-center gap-1 hover:text-accent">
               <span><FiMail/></span>
-            <a href='#'>Contact</a>
+            <Link to='/contact'>Contact</Link>
             </div>
           </li>
           <li>
             <div className="flex items-center gap-1 hover:text-accent">
-              <span><FiLogIn/></span>
-              <a href='#'>Login</a>
+              <span><LuCircleHelp/></span>
+              <Link to='/help'>Help</Link>
             </div>
           </li>
         </ul>
@@ -37,4 +39,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarHeader;

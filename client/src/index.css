@@ -32,8 +32,8 @@
   --primary: #1b212d;
   --secondary: #00102f;
   --main: #111a2b;
-  --accent: #00fbff;
-  --accent-secondary: #09eaff;
+  --accent: #64fcff;
+  --accent-secondary: #00cddf;
   --text-main: #9fd5ff;
   --text-muted: #e7e7e7;
   --text-light: #94a3b8;
@@ -48,8 +48,6 @@
   --toggle: #ffffff;
   --toggle-thumb: #000000;
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-mooli: "Mooli", sans-serif;
@@ -79,4 +77,22 @@
   --shadow-drop: 0 3px 3px 1px var(--shadow);
   --color-toggle: var(--toggle);
   --color-toggle-thumb: var(--toggle-thumb);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast {
+  animation: toast-slide-in 0.3s ease-out;
 }

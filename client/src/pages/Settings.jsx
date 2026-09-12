@@ -5,13 +5,27 @@ import { Toggle } from "../components/ui/Toggle";
 import { DefaultLocation } from "../components/defaultLocation";
 
 export const Settings = () => {
-  const { settings, updateSettings } = useSettings();
+  const { settings, updateSettings, saveSettings, saving, toast } =
+    useSettings();
 
   return (
     <section className='h-full'>
       <PageHeader title='Settings' subtitle='Manage your weather preferences' />
+
       <main className='p-6 w-220 mx-auto'>
-        
+        {toast && (
+          <div
+            className={`toast fixed bottom-6 right-6 z-50 rounded-lg px-5 py-3 text-sm font-semibold shadow-lg ${
+              toast.type === "success"
+                ? "bg-green-500/90 text-green-900"
+                : toast.type === "error"
+                  ? "bg-red-500/90 text-red-900"
+                  : "bg-gray-600 text-white"
+            }`}>
+            {toast.message}
+          </div>
+        )}
+
         <DefaultLocation />
 
         <div className='rounded-xl border border-border-muted bg-primary px-8 py-6'>
@@ -164,6 +178,14 @@ export const Settings = () => {
             </div>
           </div>
         </div>
+
+        <button
+          type='button'
+          onClick={saveSettings}
+          disabled={saving}
+          className='rounded-lg bg-accent-secondary mt-4 px-5 py-2.5 text-sm font-bold text-main transition hover:bg-accent hover:text-secondary disabled:cursor-not-allowed disabled:opacity-60'>
+          {saving ? "Saving..." : "Save Changes"}
+        </button>
       </main>
     </section>
   );
