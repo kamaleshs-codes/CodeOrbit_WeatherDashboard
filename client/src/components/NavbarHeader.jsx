@@ -10,26 +10,34 @@ const NavbarHeader = () => {
       <nav>
         <ul className='flex gap-8'>
           <li>
-            <div className="flex items-center gap-1 hover:text-accent">
-              <span><FiHome/></span>
+            <div className='flex items-center gap-1 hover:text-accent'>
+              <span>
+                <FiHome />
+              </span>
               <Link to='/'>Home</Link>
             </div>
           </li>
           <li>
-            <div className="flex items-center gap-1 hover:text-accent">
-              <span><FiInfo/></span>
+            <div className='flex items-center gap-1 hover:text-accent'>
+              <span>
+                <FiInfo />
+              </span>
               <Link to='/about'>About</Link>
             </div>
           </li>
           <li>
-            <div className="flex items-center gap-1 hover:text-accent">
-              <span><FiMail/></span>
-            <Link to='/contact'>Contact</Link>
+            <div className='flex items-center gap-1 hover:text-accent'>
+              <span>
+                <FiMail />
+              </span>
+              <Link to='/contact'>Contact</Link>
             </div>
           </li>
           <li>
-            <div className="flex items-center gap-1 hover:text-accent">
-              <span><LuCircleHelp/></span>
+            <div className='flex items-center gap-1 hover:text-accent'>
+              <span>
+                <LuCircleHelp />
+              </span>
               <Link to='/help'>Help</Link>
             </div>
           </li>

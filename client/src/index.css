@@ -16,9 +16,16 @@
   --text-main: #e6eaed;
   --text-muted: #00053e;
   --text-light: #7a9596;
+
+  --hero-start: #ccdee0;
+  --hero-mid: #c3ecff;
+  --hero-end: #c2d5e4;
+  --hero-glow: #0080ff;
+
   --card-start: #09005c;
   --card-mid: #0034de;
   --card-end: #011058;
+
   --card-contrast-high: #5cc0f9;
   --card-contrast-low: #a7f1fe;
   --border: #000b27;
@@ -32,14 +39,21 @@
   --primary: #1b212d;
   --secondary: #00102f;
   --main: #111a2b;
-  --accent: #64fcff;
-  --accent-secondary: #00cddf;
-  --text-main: #9fd5ff;
+  --accent: #9efdff;
+  --accent-secondary: #00ffea;
+  --text-main: #5eb9ff;
   --text-muted: #e7e7e7;
   --text-light: #94a3b8;
+
+  --hero-start: #071b32;
+  --hero-mid: #042541;
+  --hero-end: #101044;
+  --hero-glow: #9dfdff;
+
   --card-start: #12161f;
   --card-mid: #001e45;
   --card-end: #00091f;
+
   --card-contrast-high: #164e63;
   --card-contrast-low: #0e7490;
   --border: #334155;
@@ -59,12 +73,19 @@
   --color-text-main: var(--text-main);
   --color-text-accent: var(--accent);
   --color-text-light: var(--text-light);
+
+  --color-hero-start: var(--hero-start);
+  --color-hero-mid: var(--hero-mid);
+  --color-hero-end: var(--hero-end);
+  --color-hero-glow: var(--hero-glow);
+
   --background-image-inner-card: linear-gradient(
     230deg,
     var(--card-start),
     var(--card-mid),
     var(--card-end)
   );
+
   --background-image-card-theme: linear-gradient(
     150deg,
     var(--card-contrast-high),
