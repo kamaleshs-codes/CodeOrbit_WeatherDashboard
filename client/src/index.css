@@ -16,6 +16,7 @@
   --text-main: #e6eaed;
   --text-muted: #00053e;
   --text-light: #769495;
+  --text-light-secondary: #4f5152;
 
   --hero-start: #ccdee0;
   --hero-mid: #c3ecff;
@@ -73,6 +74,7 @@
   --color-text-main: var(--text-main);
   --color-text-accent: var(--accent);
   --color-text-light: var(--text-light);
+  --color-text-light-secondary: var(--text-light-secondary);
 
   --color-hero-start: var(--hero-start);
   --color-hero-mid: var(--hero-mid);

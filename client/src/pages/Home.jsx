@@ -14,6 +14,33 @@ import weatherAlertImg from "../assets/heroImages/weatherAlerts.png";
 import dailySummaryImg from "../assets/heroImages/dailySummary.png";
 
 export const Home = () => {
+  const features = [
+    {
+      title: "Current Weather",
+      description:
+        "View temperature, humidity, wind, pressure, visibility, sunrise, sunset, and other current conditions.",
+      icon: CloudSun,
+    },
+    {
+      title: "Weather Forecast",
+      description:
+        "Check upcoming weather conditions and plan your day with useful forecast information.",
+      icon: CalendarDays,
+    },
+    {
+      title: "Interactive Map",
+      description:
+        "Explore weather conditions geographically using an interactive weather map.",
+      icon: Map,
+    },
+    {
+      title: "Air Quality",
+      description:
+        "Monitor air-quality information alongside your current weather conditions.",
+      icon: Wind,
+    },
+  ];
+
   return (
     <div className='min-h-full bg-main text-text-main'>
       <section className='relative overflow-hidden px-8 py-12 lg:px-16 lg:py-24'>
@@ -161,46 +188,27 @@ export const Home = () => {
             </p>
           </div>
           <div className='mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4'>
-            <div className='rounded-xl border border-border-muted bg-main p-6 shadow-subtle transition hover:-translate-y-1 hover:border-accent'>
-              <div className='flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10'>
-                <CloudSun size={26} className='text-accent' />
-              </div>
-              <h3 className='mt-5 text-lg font-semibold'>Current Weather</h3>
-              <p className='mt-3 text-sm leading-6 text-text-light'>
-                View temperature, humidity, wind, pressure, visibility, sunrise,
-                sunset, and other current conditions.
-              </p>
-            </div>
-            <div className='rounded-xl border border-border-muted bg-main p-6 shadow-subtle transition hover:-translate-y-1 hover:border-accent'>
-              <div className='flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10'>
-                <CalendarDays size={26} className='text-accent' />
-              </div>
-              <h3 className='mt-5 text-lg font-semibold'>Weather Forecast</h3>
-              <p className='mt-3 text-sm leading-6 text-text-light'>
-                Check upcoming weather conditions and plan your day with useful
-                forecast information.
-              </p>
-            </div>
-            <div className='rounded-xl border border-border-muted bg-main p-6 shadow-subtle transition hover:-translate-y-1 hover:border-accent'>
-              <div className='flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10'>
-                <Map size={26} className='text-accent' />
-              </div>
-              <h3 className='mt-5 text-lg font-semibold'>Interactive Map</h3>
-              <p className='mt-3 text-sm leading-6 text-text-light'>
-                Explore weather conditions geographically using an interactive
-                weather map.
-              </p>
-            </div>
-            <div className='rounded-xl border border-border-muted bg-main p-6 shadow-subtle transition hover:-translate-y-1 hover:border-accent'>
-              <div className='flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10'>
-                <Wind size={26} className='text-accent' />
-              </div>
-              <h3 className='mt-5 text-lg font-semibold'>Air Quality</h3>
-              <p className='mt-3 text-sm leading-6 text-text-light'>
-                Monitor air-quality information alongside your current weather
-                conditions.
-              </p>
-            </div>
+            {features.map((feature) => {
+              const Icon = feature.icon;
+
+              return (
+                <div
+                  key={feature.title}
+                  className='rounded-xl border border-border-muted bg-accent-secondary p-6 shadow-subtle transition hover:-translate-y-1 hover:border-accent'>
+                  <div className='flex h-12 w-12 items-center justify-center rounded-lg bg-secondary'>
+                    <Icon size={26} className='text-main' />
+                  </div>
+
+                  <h3 className='mt-5 text-lg font-semibold text-text-main'>
+                    {feature.title}
+                  </h3>
+
+                  <p className='mt-3 text-sm leading-6 font-semibold text-accent'>
+                    {feature.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -208,13 +216,13 @@ export const Home = () => {
       <section className='px-8 py-16 lg:px-16'>
         <div className='mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center'>
           <div>
-            <p className='text-sm font-semibold uppercase tracking-wider text-accent'>
+            <p className='text-sm font-semibold uppercase tracking-wider text-secondary'>
               Why Weatherly?
             </p>
-            <h2 className='mt-2 text-3xl font-bold sm:text-4xl'>
+            <h2 className='mt-2 text-3xl font-bold sm:text-4xl text-accent-secondary'>
               A simple way to stay informed about the weather.
             </h2>
-            <p className='mt-5 leading-7 text-text-light'>
+            <p className='mt-5 leading-7 text-text-light-secondary'>
               Weatherly brings important weather information together in one
               place, helping you quickly understand current conditions and what
               to expect next.
@@ -258,10 +266,9 @@ export const Home = () => {
           <div className='mt-10 grid gap-5 md:grid-cols-3'>
             <Link
               to='/dashboard'
-              className='group rounded-xl border border-border-muted bg-main p-6 text-left shadow-subtle transition hover:border-accent'>
-              <CloudSun size={28} className='text-accent' />
-              <h3 className='mt-5 text-xl font-semibold'>Dashboard</h3>
-              <p className='mt-2 text-sm text-text-light'>
+              className='group rounded-xl border border-border-muted bg-accent-secondary p-6 text-left shadow-subtle transition hover:border-accent'>
+              <h3 className='mt-5 text-xl font-semibold text-main'>Dashboard</h3>
+              <p className='mt-2 text-sm'>
                 Check current weather conditions and detailed weather
                 information.
               </p>
@@ -275,10 +282,9 @@ export const Home = () => {
             </Link>
             <Link
               to='/forecast'
-              className='group rounded-xl border border-border-muted bg-main p-6 text-left shadow-subtle transition hover:border-accent'>
-              <CalendarDays size={28} className='text-accent' />
+              className='group rounded-xl border border-border-muted bg-accent-secondary p-6 text-left shadow-subtle transition hover:border-accent'>
               <h3 className='mt-5 text-xl font-semibold'>Forecast</h3>
-              <p className='mt-2 text-sm text-text-light'>
+              <p className='mt-2 text-sm'>
                 View upcoming weather conditions and plan ahead.
               </p>
               <div className='mt-5 flex items-center gap-2 text-sm font-semibold text-accent'>
@@ -291,10 +297,9 @@ export const Home = () => {
             </Link>
             <Link
               to='/weathermap'
-              className='group rounded-xl border border-border-muted bg-main p-6 text-left shadow-subtle transition hover:border-accent'>
-              <Map size={28} className='text-accent' />
+              className='group rounded-xl border border-border-muted bg-accent-secondary p-6 text-left shadow-subtle transition hover:border-accent'>
               <h3 className='mt-5 text-xl font-semibold'>Weather Map</h3>
-              <p className='mt-2 text-sm text-text-light'>
+              <p className='mt-2 text-sm'>
                 Explore weather information through an interactive map.
               </p>
               <div className='mt-5 flex items-center gap-2 text-sm font-semibold text-accent'>
@@ -312,24 +317,24 @@ export const Home = () => {
       <footer className='bg-main px-8 py-10 lg:px-16'>
         <div className='mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between'>
           <div>
-            <h2 className='text-xl font-bold'>Weatherly</h2>
-            <p className='mt-1 text-sm text-text-light'>
+            <h2 className='text-xl font-bold text-accent-secondary'>Weatherly</h2>
+            <p className='mt-1 text-sm text-text-light-secondary'>
               Your simple weather companion.
             </p>
           </div>
-          <div className='flex flex-wrap items-center gap-5 text-sm text-text-light'>
-            <Link to='/about' className='transition hover:text-accent'>
+          <div className='flex flex-wrap items-center gap-5 text-sm text-text-light-secondary'>
+            <Link to='/about' className='transition hover:text-secondary'>
               About
             </Link>
-            <Link to='/contact' className='transition hover:text-accent'>
+            <Link to='/contact' className='transition hover:text-secondary'>
               Contact
             </Link>
-            <Link to='/help' className='transition hover:text-accent'>
+            <Link to='/help' className='transition hover:text-secondary'>
               Help
             </Link>
           </div>
         </div>
-        <div className='mx-auto mt-8 max-w-7xl border-t border-border pt-5 text-center text-xs text-text-light'>
+        <div className='mx-auto mt-8 max-w-7xl border-t border-border pt-5 text-center text-xs text-text-light-secondary'>
           © 2026 Weatherly. All rights reserved.
         </div>
       </footer>
